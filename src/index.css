@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+html {
+  font-family: 'Inter', sans-serif;
+}
+
+html {
+  background: black;
+  scroll-behavior: smooth;
+}
+
+
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+ 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+   overflow-x: auto;
+  scrollbar-gutter: stable overlay;   
+}
+
+ 
