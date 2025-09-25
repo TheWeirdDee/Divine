@@ -22,7 +22,7 @@ function Navbar() {
 
   return (
     <nav className="w-full md:relative fixed md:top-10 top-0 flex justify-center pt-10 pb-7 z-50 backdrop-blur-sm bg-black/30">
-      <div className="rounded-full border border-gray-700 px-6 py-4 flex items-center justify-between md:w-full md:max-w-2xl w-[400px] backdrop-blur-sm bg-black/30">
+      <div className="rounded-full border border-gray-700 px-5 py-4 flex items-center justify-between md:w-full md:max-w-2xl w-[380px] backdrop-blur-sm bg-black/30">
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -141,7 +141,7 @@ function Hero() {
           <h2 className="mb-16 text-[64px] md:text-[96px] lg:text-[75px] font-extrabold text-gray-700 opacity-40 leading-[0.85] tracking-tight">
             Hello there,
           </h2>
-          <h1 className="-mt-6 md:-mt-10 text-[44px] md:text-[56px] lg:text-[75px] font-extrabold text-white leading-[1.02] tracking-tight min-h-[10px] md:min-h-0 lg:min-h-0">
+          <h1 className="-mt-6 md:-mt-10 text-[44px] md:text-[56px] lg:text-[75px] font-extrabold text-white leading-[1.02] tracking-tight min-h-[100px] md:min-h-0 lg:min-h-0">
             {text}
             <span className="animate-pulse">|</span>
           </h1>
@@ -152,7 +152,7 @@ function Hero() {
           initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="mt-8 text-gray-300 max-w-2xl mx-auto leading-relaxed text-justified md:text-center"
+          className="mt-8 text-gray-300 max-w-2xl mx-auto leading-relaxed text-left md:text-center"
         >
           I am a Front-End Developer with hands-on experience building modern,
           user-friendly web applications. I focus on crafting fast, accessible,

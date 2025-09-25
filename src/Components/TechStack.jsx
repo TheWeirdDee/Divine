@@ -11,7 +11,7 @@ import {
   SiNodedotjs,
   SiNextdotjs,
 } from "react-icons/si";
-import { SiFramer } from "react-icons/si"; 
+import { SiFramer, SiReactquery  } from "react-icons/si"; 
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import AOS from "aos";
@@ -33,7 +33,8 @@ export default function TechSection() {
     { name: "Bootstrap", icon: SiBootstrap, color: "#7952B3" },
     { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
     { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
-    { name: "Framer Motion", icon: SiFramer, color: "#FF0050" },  
+    { name: "Framer Motion", icon: SiFramer, color: "#FF0050" },
+    { name: "React Query", icon: SiReactquery, color: "#FF4154" },  
   ];
 
   return (
