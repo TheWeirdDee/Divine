@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import Hunch from "../assets/Images/Hunch.png";
 import Resend from "../assets/Images/Resend.png";
 import StudyLoop from "../assets/Images/StudyLoop.png";
@@ -75,14 +78,32 @@ const projects = [
 ];
 
 export default function Projects() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, 
+      easing: "ease-in-out",
+      once: true, 
+      offset: 100,
+    });
+  }, []);
+
   return (
     <section
       id="projects"
-      className="py-5 md:mt-0  text-left bg-black text-white"
+      className="py-5 md:mt-0 text-left bg-black text-white"
     >
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
-        <p className="text-gray-400 mb-16">
+        <h2
+          className="text-4xl font-bold mb-4"
+          data-aos="fade-down"
+        >
+          Featured Projects
+        </h2>
+        <p
+          className="text-gray-400 mb-16"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
           A showcase of my recent work, featuring modern web applications built
           with cutting-edge technologies and crafted with attention to detail.
         </p>
@@ -94,36 +115,52 @@ export default function Projects() {
               className={`flex flex-col lg:flex-row items-center gap-12 ${
                 index % 2 !== 0 ? "lg:flex-row-reverse" : ""
               }`}
+              data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
             >
-              <div className="flex-1">
+              
+              <div
+                className="flex-1"
+                data-aos="zoom-in"
+                data-aos-delay="200"
+              >
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="rounded-2xl shadow-lg h-full w-full object-cover"
+                  className="rounded-2xl shadow-lg h-full w-full object-cover hover:scale-[1.02] transition-transform duration-500"
                 />
               </div>
 
-              <div className="flex-1">
+               
+              <div
+                className="flex-1"
+                data-aos="fade-up"
+                data-aos-delay="400"
+              >
                 <h3 className="text-2xl font-bold mb-4">{project.title}</h3>
                 <p className="text-gray-400 mb-6">{project.description}</p>
 
+                
                 <div className="flex gap-4 flex-wrap mb-6">
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 border-1 bg-white/10 rounded-lg text-sm text-gray-300"
+                      className="px-3 py-1 border border-gray-700 bg-white/10 rounded-lg text-sm text-gray-300"
+                      data-aos="zoom-in-up"
+                      data-aos-delay={i * 100}
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
+               
                 <div className="flex gap-4">
                   <a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2   bg-purple-700 hover:bg-purple-800 rounded-lg text-sm font-medium"
+                    className="px-4 py-2 bg-purple-700 hover:bg-purple-800 rounded-lg text-sm font-medium transition-transform transform hover:scale-105"
+                    data-aos="fade-right"
                   >
                     View Live
                   </a>
@@ -131,7 +168,8 @@ export default function Projects() {
                     href={project.repo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-gray-700 hover:bg-gray-800 rounded-lg text-sm font-medium"
+                    className="px-4 py-2 bg-gray-700 hover:bg-gray-800 rounded-lg text-sm font-medium transition-transform transform hover:scale-105"
+                    data-aos="fade-left"
                   >
                     Repository
                   </a>

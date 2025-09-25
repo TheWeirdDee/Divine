@@ -1,6 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
+import { motion } from "framer-motion"; // ✅ Import Framer Motion
+
 import Projects from "../Components/Projects";
 import ProfileCard from "../Components/ProfileCard";
 import Contact from "../Components/Contact";
@@ -19,8 +22,7 @@ function Navbar() {
 
   return (
     <nav className="w-full md:relative fixed md:top-10 top-0 flex justify-center pt-10 pb-7 z-50 backdrop-blur-sm bg-black/30">
-      <div className="rounded-full border border-gray-700 px-6 py-4 flex items-center justify-between md:w-full md:max-w-2xl w-[450px] backdrop-blur-sm bg-black/30">
-        
+      <div className="rounded-full border border-gray-700 px-6 py-4 flex items-center justify-between md:w-full md:max-w-2xl w-[400px] backdrop-blur-sm bg-black/30">
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -47,17 +49,11 @@ function Navbar() {
           ))}
         </div>
 
-       <a href="mailto:divinenation1@gmail.com">
-  <button className="bg-purple-700 text-black px-4 py-3 rounded-2xl font-semibold 
-                     shadow-[0_8px_30px_rgba(34,197,94,0.18)] text-base md:text-sm
-                     transition-transform duration-200 
-                     hover:bg-purple-600 hover:scale-105 
-                     active:scale-95">
-    Let&apos;s Connect 💻
-  </button>
-</a>
-
-
+        <a href="mailto:divinenation1@gmail.com">
+          <button className="bg-purple-700 text-black px-4 py-3 rounded-2xl font-semibold shadow-[0_8px_30px_rgba(34,197,94,0.18)] text-base md:text-sm transition-transform duration-200 hover:bg-purple-600 hover:scale-105 active:scale-95">
+            Let&apos;s Connect 💻
+          </button>
+        </a>
       </div>
 
       {/* Mobile Menu */}
@@ -89,7 +85,6 @@ function Navbar() {
   );
 }
 
- 
 function Hero() {
   const texts = ["I am Divine Dilibe", "I am a Frontend Developer"];
   const [text, setText] = useState("");
@@ -117,81 +112,94 @@ function Hero() {
     };
 
     const timer = setTimeout(handleTyping, speed);
-
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, isDeleting, loop, speed]);
 
   return (
     <header className="md:top-10 top-40 flex flex-col items-center justify-center text-center relative overflow-hidden px-6">
-      
       <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-80 h-36 rounded-full blur-3xl bg-gradient-to-t from-green-800/20 to-transparent pointer-events-none"></div>
 
       <div className="max-w-5xl mx-auto">
         
-        <div className="mx-auto mb-6 w-26 h-26 rounded-xl bg-green-50 grid place-items-center shadow-sm overflow-hidden animate-bounce">
+        <motion.div
+          initial={{ opacity: 0, y: -80 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="mx-auto mb-6 w-26 h-26 rounded-xl bg-green-50 grid place-items-center shadow-sm overflow-hidden"
+        >
           <img src={MyAni} alt="Profile Avatar" className="object-cover" />
-        </div>
+        </motion.div>
 
-        
-        <div className="relative">
+         
+        <motion.div
+          initial={{ opacity: 0, x: -120 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="relative"
+        >
           <h2 className="mb-16 text-[64px] md:text-[96px] lg:text-[75px] font-extrabold text-gray-700 opacity-40 leading-[0.85] tracking-tight">
             Hello there,
           </h2>
-          <h1 className="-mt-6 md:-mt-10 text-[44px] md:text-[56px] lg:text-[75px] font-extrabold text-white leading-[0.85] tracking-tight">
+          <h1 className="-mt-6 md:-mt-10 text-[44px] md:text-[56px] lg:text-[75px] font-extrabold text-white leading-[1.02] tracking-tight min-h-[10px] md:min-h-0 lg:min-h-0">
             {text}
             <span className="animate-pulse">|</span>
           </h1>
-        </div>
+        </motion.div>
 
          
-        <p className="mt-8 text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        <motion.p
+          initial={{ opacity: 0, y: 80 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="mt-8 text-gray-300 max-w-2xl mx-auto leading-relaxed text-justified md:text-center"
+        >
           I am a Front-End Developer with hands-on experience building modern,
           user-friendly web applications. I focus on crafting fast, accessible,
           and engaging digital experiences. My goal is to keep growing as a
           developer while delivering innovative, user-focused solutions.
-        </p>
+        </motion.p>
 
-       
-        <div className="mt-8 flex items-center justify-center gap-6">
+      
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.9 }}
+          className="mt-8 flex items-center justify-center gap-6"
+        >
           <a
             href="https://x.com/devineishuman?s=21&t=7TaJwu1nHCUEhZLkvcLEbQ"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/6 grid place-items-center hover:scale-105 transition"
+            className="w-10 h-10 rounded-full bg-white/6 grid place-items-center hover:scale-110 transition"
           >
             <FaTwitter className="text-gray-300" />
           </a>
-
           <a
             href="https://wa.me/2349030129356"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/6 grid place-items-center hover:scale-105 transition"
+            className="w-10 h-10 rounded-full bg-white/6 grid place-items-center hover:scale-110 transition"
           >
             <FaWhatsapp className="text-gray-300" />
           </a>
-
-         
           <a
-            href="https://www.linkedin.com/in/divine-nation-647a571b3?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+            href="https://www.linkedin.com/in/divine-nation-647a571b3"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/6 grid place-items-center hover:scale-105 transition"
+            className="w-10 h-10 rounded-full bg-white/6 grid place-items-center hover:scale-110 transition"
           >
             <FaLinkedin className="text-gray-300" />
           </a>
-
-           
           <a
             href="https://github.com/TheWeirdDee"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/6 grid place-items-center hover:scale-105 transition"
+            className="w-10 h-10 rounded-full bg-white/6 grid place-items-center hover:scale-110 transition"
           >
             <FaGithub className="text-gray-300" />
           </a>
-        </div>
+        </motion.div>
       </div>
     </header>
   );
@@ -203,7 +211,7 @@ export default function Portfolio() {
       <Navbar />
       <Hero />
 
-      <section id="projects" className="py-20">
+      <section id="projects" className="md:pt-20 pt-48">
         <Projects />
       </section>
 
@@ -212,7 +220,7 @@ export default function Portfolio() {
       </section>
 
       <TechStack />
-        <section id="contact">
+      <section id="contact">
         <Contact />
       </section>
     </div>

@@ -25,7 +25,7 @@ const Contact = () => {
            
           <a
             href="mailto:divinenation1@gmail.com"
-            className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-400 hover:text-white transition-colors"
+            className="text-3xl md:text-5xl lg:text-6xl font-light text-gray-400 hover:text-white transition-colors"
           >
             divinenation1@gmail.com
           </a>
