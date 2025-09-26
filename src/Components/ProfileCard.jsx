@@ -48,7 +48,7 @@ export default function ProfileCard() {
             like solving problems with teammates and shipping products that feel
             intuitive and reliable. Right now, my focus is on growing as a
             developer while creating digital experiences that people actually
-            enjoy using.
+            enjoy using. HIRE ME!
             </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <motion.a
