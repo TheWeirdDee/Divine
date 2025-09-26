@@ -55,7 +55,7 @@ export default function ProfileCard() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="text-sm px-4 py-2 bg-white/6 border border-white rounded-lg hover:bg-white/8 transition"
-              href="#"
+              href="#projects"
             >
               View projects
             </motion.a>
@@ -63,7 +63,7 @@ export default function ProfileCard() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="text-sm px-4 py-2 bg-transparent border border-white/8 rounded-lg hover:bg-white/6 transition"
-              href="#"
+               href="mailto:divinenation1@gmail.com"
             >
               Contact
             </motion.a>
