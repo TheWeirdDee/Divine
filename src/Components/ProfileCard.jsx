@@ -18,7 +18,6 @@ export default function ProfileCard() {
       />
 
       <div className="relative z-10 bg-transparent p-6 md:p-10 rounded-2xl flex flex-col-reverse md:flex-row items-center gap-8 md:gap-16">
-        {/* Text Section */}
         <motion.div
           initial={{ x: -80, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
@@ -37,12 +36,20 @@ export default function ProfileCard() {
           </p>
 
           <p className="mt-6 text-gray-300 leading-relaxed text-left">
-            I build modern, responsive front-ends using React and Tailwind CSS.
-            I focus on polished interactions, accessibility, and clean code. The
-            UI here features a glass-framed profile, animated touches, and a
-            clear stack showcase.
+            Hi! I am Divine, a Frontend Web Developer who loves turning designs
+            into smooth, responsive web applications. Most of my work is with
+            React, HTML, Tailwind CSS, and JavaScript but I also have a solid
+            foundation in, Next.js, Typescript and Node.js. 
           </p>
-
+          <p className="mt-6 text-gray-300 leading-relaxed text-left">
+               I enjoy building
+            clean, reusable components and making sure apps look great and work
+            well on any device. Collaboration is a big part of how I work, I
+            like solving problems with teammates and shipping products that feel
+            intuitive and reliable. Right now, my focus is on growing as a
+            developer while creating digital experiences that people actually
+            enjoy using.
+            </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <motion.a
               whileHover={{ scale: 1.05 }}
