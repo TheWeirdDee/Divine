@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
-import { motion } from "framer-motion"; // ✅ Import Framer Motion
+import { motion } from "framer-motion";
 
 import Projects from "../Components/Projects";
 import ProfileCard from "../Components/ProfileCard";
@@ -121,17 +121,20 @@ function Hero() {
       <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-80 h-36 rounded-full blur-3xl bg-gradient-to-t from-green-800/20 to-transparent pointer-events-none"></div>
 
       <div className="max-w-5xl mx-auto">
-        
         <motion.div
           initial={{ opacity: 0, y: -80 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          animate={{ opacity: 1, y: [0, -20, 0] }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            repeatType: "loop",
+            ease: "linear",
+          }}
           className="mx-auto mb-6 w-26 h-26 rounded-xl bg-green-50 grid place-items-center shadow-sm overflow-hidden"
         >
           <img src={MyAni} alt="Profile Avatar" className="object-cover" />
         </motion.div>
 
-         
         <motion.div
           initial={{ opacity: 0, x: -120 }}
           animate={{ opacity: 1, x: 0 }}
@@ -147,7 +150,6 @@ function Hero() {
           </h1>
         </motion.div>
 
-         
         <motion.p
           initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
@@ -160,7 +162,6 @@ function Hero() {
           developer while delivering innovative, user-focused solutions.
         </motion.p>
 
-      
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
