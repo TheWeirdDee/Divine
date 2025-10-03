@@ -52,7 +52,7 @@ const projects = [
       "TailwindCSS",
       "Framer Motion",
     ],
-    live: "https://study-loop-henna.vercel.app/",
+    live: "https://study-loop-seven.vercel.app/",
     repo: "https://github.com/faykey/studyLoop?tab=readme-ov-file",
   },
   {
