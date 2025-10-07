@@ -72,7 +72,7 @@ const projects = [
       "Mitch Kitchen, a gourmet food truck, is a luxury brand that offer customizable menus for events, and people in need.",
     image: MitchKitchen,
     tech: ["React", "Vite", "TailwindCSS", "AOS"],
-    live: "https://your-mitchkitchen-live-link.com",
+    live: "https://mitch-kitchen.vercel.app",
     repo: "https://github.com/TheWeirdDee/MitchKitchen",
   },
 ];
