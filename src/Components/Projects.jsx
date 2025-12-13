@@ -11,16 +11,29 @@ import MitchKitchen from "../assets/Images/MitchKitchenn.png";
 const projects = [
   {
     id: 1,
+    title: "TradeFlix",
+    description:
+      "TradeFlix is an MVP-stage trading platform built to support beginner traders through affordable trade journaling, AI-driven recommendations, mentor comparison tools, and a unified dashboard for progress tracking.",
+    image: Hunch,
+    tech: [
+      "React",
+      "Context API",
+      "TailwindCSS",
+      "Framer Motion",
+      "React Query",
+      "MERN",
+    ],
+    live: "https://tradeflix-eosin.vercel.app/",
+  },
+  {
+    id: 2,
     title: "Hunch",
     description:
       "Hunch is a personalized nutrition and meal-planning platform that helps users find the right meals for their goals, preferences, and lifestyle. It asks a few simple questions about your health goals, dietary needs, and habits, then it recommends a personalized meal plan.",
     image: Hunch,
     tech: [
       "React",
-      "Vite",
-      "React Router",
-      "React Query",
-      "React Hook Form + Yup",
+      "Context API",
       "TailwindCSS",
       "Framer Motion",
       "Leaflet",
@@ -29,24 +42,23 @@ const projects = [
     repo: "https://www.hunch.ng/",
   },
   {
-    id: 2,
+    id: 3,
     title: "Resend",
     description:
       "A full frontend clone of Resend, a developer-friendly email platform that lets you send, receive, and manage emails through a simple API. I recreated the UI including the landing page, feature pages, and overall user flow with a focus on responsiveness, accessibility, and pixel-perfect design.",
     image: Resend,
-    tech: ["React", "Vite", "React Router", "TailwindCSS", "Framer Motion"],
+    tech: ["React", "React Router", "TailwindCSS", "Framer Motion"],
     live: "https://resend-tau.vercel.app/",
     repo: "https://github.com/TheWeirdDee/Resend",
   },
   {
-    id: 3,
+    id: 4,
     title: "StudyLoop",
     description:
       "StudyLoop is a full-stack MERN (MongoDB, Express, React, Node.js) web app that helps users learn in an interactive environment, earn achievements, connect with study partners, and build consistent learning streaks. Sign up to access features.",
     image: StudyLoop,
     tech: [
       "React",
-      "Vite",
       "Express.js",
       "MongoDB",
       "TailwindCSS",
@@ -56,17 +68,17 @@ const projects = [
     repo: "https://github.com/faykey/studyLoop?tab=readme-ov-file",
   },
   {
-    id: 4,
+    id: 5,
     title: "HomeLutions",
     description:
       "Need a HandyMan? HomeLutions connect busy homeowners with skilled professionals who take pride in quality work and exceptional handyman services.",
     image: HomeLutions,
-    tech: ["React", "Vite", "TailwindCSS", "Framer Motion", "AOS"],
+    tech: ["React", "TailwindCSS", "Framer Motion", "AOS"],
     live: "https://home-lutions.vercel.app/",
     repo: "https://github.com/TheWeirdDee/HomeLutions",
   },
   {
-    id: 5,
+    id: 6,
     title: "MitchKitchen",
     description:
       "Mitch Kitchen, a gourmet food truck, is a luxury brand that offer customizable menus for events, and people in need.",
