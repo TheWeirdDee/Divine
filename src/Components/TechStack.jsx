@@ -96,7 +96,7 @@ export default function TechSection() {
           transition={{ duration: 1 }}
         >
           <div data-aos="fade-left">
-            <h3 className="text-2xl bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 bg-clip-text text-transparent opacity-50 mb-3 font-semibold md:mt-36">
+            <h3 className="text-3xl tracking-wider font-semibold mb-3 bg-gradient-to-r from-purple-400 via-white  to-yellow-500 bg-clip-text text-transparent opacity-50 mb-3 font-semibold md:mt-36">
               Soft Skills
             </h3>
             <ul className="grid grid-cols-2 gap-2 text-gray-300">

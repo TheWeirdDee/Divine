@@ -123,33 +123,34 @@ export default function Projects() {
   }}
   viewport={{ once: true, amount: 0.25 }}
   className={`flex flex-col lg:flex-row items-center gap-12
-    border border-white/30 bg-[#161616] rounded-3xl p-6
-    lg:border-0 lg:bg-transparent lg:p-0
+      bg-[#161616] rounded-3xl p-6
+      lg:bg-transparent lg:p-0
     ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}
   `}
 >
 
-              {/* Image */}
-              <div className="flex-1">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="rounded-2xl shadow-lg w-full h-full object-cover
-                    hover:scale-[1.02] transition-transform duration-500"
-                />
-              </div>
+              
+              <div className="flex-1 order-2 md:order-1">
+  <img
+    src={project.image}
+    alt={project.title}
+    className="rounded-2xl shadow-lg w-full h-full object-cover
+      hover:scale-[1.02] transition-transform duration-500"
+  />
+</div>
 
-              {/* Content */}
+
+             
               <div className="flex-1">
-                <h3 className="text-2xl font-bold mb-4">
+                <h3 className="text-2xl font-bold mb-2">
                   {project.title}
                 </h3>
 
-                <p className="text-gray-400 mb-6">
+                <p className="text-gray-400 mb-2">
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2 mb-2">
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}

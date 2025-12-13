@@ -1,11 +1,37 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Divine from "../assets/Images/Divineee.jpg";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function ProfileCard() {
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".gsap-text", {
+        opacity: 0,
+        y: 40,
+        duration: 0.9,
+        ease: "power3.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+    }, textRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div className="relative mr-0 md:mr-10 flex items-center justify-center">
+      {/* Glow */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -18,39 +44,40 @@ export default function ProfileCard() {
       />
 
       <div className="relative z-10 bg-transparent p-6 md:p-10 rounded-2xl flex flex-col-reverse md:flex-row items-center gap-8 md:gap-16">
-        <motion.div
-          initial={{ x: -80, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          viewport={{ once: true }}
+        {/* TEXT */}
+        <div
+          ref={textRef}
           className="max-w-xl text-center md:text-left"
         >
-          <h1 className="mb-6 md:mb-20 text-3xl font-extrabold tracking-tight rounded-lg shadow-sm">
+          <h1 className="gsap-text mb-6 md:mb-20 text-3xl font-extrabold tracking-tight">
             About Me
           </h1>
-          <h1 className="inline-block px-5 py-3 text-3xl font-extrabold tracking-tight rounded-lg backdrop-blur-md bg-purple-700/10 border border-white/20 shadow-sm">
+
+          <h2 className="gsap-text inline-block px-5 py-3 text-3xl font-extrabold tracking-tight rounded-lg backdrop-blur-md bg-purple-700/10 border border-white/20 shadow-sm">
             Divine Dilibe
-          </h1>
-          <p className="text-purple-300 mt-3">
+          </h2>
+
+          <p className="gsap-text text-purple-300 mt-3">
             Frontend Developer • UI Enthusiast
           </p>
 
-          <p className="mt-6 text-gray-300 leading-relaxed text-left">
+          <p className="gsap-text mt-6 text-gray-300 leading-relaxed">
             Hi! I am Divine, a Frontend Web Developer who loves turning designs
             into smooth, responsive web applications. Most of my work is with
             React, HTML, Tailwind CSS, and JavaScript but I also have a solid
-            foundation in, Next.js, Typescript and Node.js. 
+            foundation in Next.js, Typescript, and Node.js.
           </p>
-          <p className="mt-6 text-gray-300 leading-relaxed text-left">
-               I enjoy building
-            clean, reusable components and making sure apps look great and work
-            well on any device. Collaboration is a big part of how I work, I
-            like solving problems with teammates and shipping products that feel
-            intuitive and reliable. Right now, my focus is on growing as a
-            developer while creating digital experiences that people actually
-            enjoy using. HIRE ME!
-            </p>
-          <div className="mt-8 flex flex-wrap gap-4">
+
+          <p className="gsap-text mt-6 text-gray-300 leading-relaxed">
+            I enjoy building clean, reusable components and making sure apps
+            look great and work well on any device. Collaboration is a big
+            part of how I work — I like solving problems with teammates and
+            shipping products that feel intuitive and reliable. Right now,
+            my focus is on growing as a developer while creating digital
+            experiences that people actually enjoy using. <strong>HIRE ME!</strong>
+          </p>
+
+          <div className="gsap-text mt-8 flex flex-wrap gap-4">
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -59,17 +86,19 @@ export default function ProfileCard() {
             >
               View projects
             </motion.a>
+
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="text-sm px-4 py-2 bg-transparent border border-white/8 rounded-lg hover:bg-white/6 transition"
-               href="mailto:divinenation1@gmail.com"
+              href="mailto:divinenation1@gmail.com"
             >
               Contact
             </motion.a>
           </div>
-        </motion.div>
+        </div>
 
+        {/* IMAGE */}
         <motion.div
           initial={{ x: 80, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
