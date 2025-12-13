@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import TradeFlix from "../assets/Images/TradeFlix.png";
 import Hunch from "../assets/Images/Hunch.png";
 import Resend from "../assets/Images/Resend.png";
 import StudyLoop from "../assets/Images/StudyLoop.png";
@@ -14,7 +14,7 @@ const projects = [
     title: "TradeFlix",
     description:
       "TradeFlix is an MVP-stage trading platform built to support beginner traders through affordable trade journaling, AI-driven recommendations, mentor comparison tools, and a unified dashboard for progress tracking.",
-    image: Hunch,
+    image: TradeFlix,
     tech: [
       "React",
       "Context API",
@@ -39,7 +39,6 @@ const projects = [
       "Leaflet",
     ],
     live: "https://www.hunch.ng/",
-    repo: "https://www.hunch.ng/",
   },
   {
     id: 3,
@@ -85,7 +84,6 @@ const projects = [
     image: MitchKitchen,
     tech: ["React", "Vite", "TailwindCSS", "AOS"],
     live: "https://mitch-kitchen.vercel.app",
-    repo: "https://github.com/TheWeirdDee/MitchKitchen",
   },
 ];
 
@@ -123,12 +121,15 @@ export default function Projects() {
         <div className="flex flex-col gap-24">
           {projects.map((project, index) => (
             <div
-              key={project.id}
-              className={`flex flex-col lg:flex-row items-center gap-12 ${
-                index % 2 !== 0 ? "lg:flex-row-reverse" : ""
-              }`}
-              data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
-            >
+  key={project.id}
+  className={`flex flex-col lg:flex-row items-center gap-12
+    border border-white/20 rounded-3xl p-6
+    lg:border-0 lg:p-0
+    ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}
+  `}
+  data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
+>
+
               
               <div
                 className="flex-1"
@@ -156,7 +157,7 @@ export default function Projects() {
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 border border-gray-700 bg-white/10 rounded-lg text-sm text-gray-300"
+                      className="px-3 py-1 bg-white/10 rounded-lg text-sm text-gray-300"
                       data-aos="zoom-in-up"
                       data-aos-delay={i * 100}
                     >
@@ -167,26 +168,29 @@ export default function Projects() {
 
                
                 <div className="flex gap-4">
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 bg-purple-700 hover:bg-purple-800 rounded-lg text-sm font-medium transition-transform transform hover:scale-105"
-                    data-aos="fade-right"
-                  >
-                    View Live
-                  </a>
-                  <a
-                    href={project.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 bg-gray-700 hover:bg-gray-800 rounded-lg text-sm font-medium transition-transform transform hover:scale-105"
-                    data-aos="fade-left"
-                  >
-                    Repository
-                  </a>
-                </div>
-              </div>
+  <a
+    href={project.live}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="px-4 py-2 bg-purple-700 hover:bg-purple-800 rounded-lg text-sm font-medium transition-transform transform hover:scale-105"
+    data-aos="fade-right"
+  >
+    View Live
+  </a>
+
+  {project.repo && (
+    <a
+      href={project.repo}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="px-4 py-2 bg-gray-700 hover:bg-gray-800 rounded-lg text-sm font-medium transition-transform transform hover:scale-105"
+      data-aos="fade-left"
+    >
+      Repository
+    </a>
+  )}
+</div>
+  </div>
             </div>
           ))}
         </div>

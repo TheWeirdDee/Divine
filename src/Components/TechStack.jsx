@@ -10,6 +10,9 @@ import {
   SiBootstrap,
   SiNodedotjs,
   SiNextdotjs,
+  SiJira, 
+  SiGreensock,
+  SiShadcnui,
 } from "react-icons/si";
 import { SiFramer, SiReactquery  } from "react-icons/si"; 
 import { useEffect } from "react";
@@ -34,7 +37,10 @@ export default function TechSection() {
     { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
     { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
     { name: "Framer Motion", icon: SiFramer, color: "#FF0050" },
-    { name: "React Query", icon: SiReactquery, color: "#FF4154" },  
+    { name: "React Query", icon: SiReactquery, color: "#FF4154" }, 
+    { name: "Jira", icon: SiJira, color: "#0052CC" },
+    { name: "shadcn/ui", icon: SiShadcnui, color: "#000000" },
+    { name: "GSAP", icon: SiGreensock, color: "#88CE02" }, 
   ];
 
   return (
@@ -49,7 +55,7 @@ export default function TechSection() {
           transition={{ duration: 1 }}
         >
           <div data-aos="fade-right">
-            <h3 className="text-3xl font-semibold mb-3 bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 bg-clip-text text-transparent opacity-50">
+            <h3 className="text-3xl tracking-wider font-semibold mb-3 bg-gradient-to-r from-purple-400 via-white to-yellow-500 bg-clip-text text-transparent opacity-50">
               Education
             </h3>
             <p className="text-gray-300">
@@ -60,7 +66,7 @@ export default function TechSection() {
           </div>
 
           <div data-aos="zoom-in-up">
-           <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 bg-clip-text text-transparent opacity-50">
+           <h3 className="text-3xl tracking-wider font-semibold mb-4 bg-gradient-to-r from-purple-400 via-white to-yellow-500 bg-clip-text text-transparent opacity-50">
   Technical Skills
 </h3>
 

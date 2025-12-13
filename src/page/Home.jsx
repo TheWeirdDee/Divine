@@ -50,7 +50,7 @@ function Navbar() {
         </div>
 
         <a href="mailto:divinenation1@gmail.com">
-          <button className="bg-purple-700 text-black px-4 py-3 rounded-2xl font-semibold shadow-[0_8px_30px_rgba(34,197,94,0.18)] text-base md:text-sm transition-transform duration-200 hover:bg-purple-600 hover:scale-105 active:scale-95">
+          <button className="bg-white/70 text-black px-4 py-3 rounded-2xl font-semibold shadow-[0_8px_30px_rgba(34,197,94,0.18)] text-base md:text-sm transition-transform duration-200 hover:bg-purple-600 hover:scale-105 active:scale-95">
             Let&apos;s Connect 💻
           </button>
         </a>
