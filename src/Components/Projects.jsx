@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React from "react";
+import { motion } from "framer-motion";
+
 import TradeFlix from "../assets/Images/TradeFlix.png";
 import Hunch from "../assets/Images/Hunch.png";
 import Resend from "../assets/Images/Resend.png";
@@ -54,7 +54,7 @@ const projects = [
     id: 4,
     title: "StudyLoop",
     description:
-      "StudyLoop is a full-stack MERN (MongoDB, Express, React, Node.js) web app that helps users learn in an interactive environment, earn achievements, connect with study partners, and build consistent learning streaks. Sign up to access features.",
+      "StudyLoop is a full-stack MERN (MongoDB, Express, React, Node.js) web app that helps users learn in an interactive environment, earn achievements, connect with study partners, and build consistent learning streaks.",
     image: StudyLoop,
     tech: [
       "React",
@@ -64,7 +64,7 @@ const projects = [
       "Framer Motion",
     ],
     live: "https://study-loop-seven.vercel.app/",
-    repo: "https://github.com/faykey/studyLoop?tab=readme-ov-file",
+    repo: "https://github.com/faykey/studyLoop",
   },
   {
     id: 5,
@@ -72,7 +72,7 @@ const projects = [
     description:
       "Need a HandyMan? HomeLutions connect busy homeowners with skilled professionals who take pride in quality work and exceptional handyman services.",
     image: HomeLutions,
-    tech: ["React", "TailwindCSS", "Framer Motion", "AOS"],
+    tech: ["React", "TailwindCSS", "Framer Motion"],
     live: "https://home-lutions.vercel.app/",
     repo: "https://github.com/TheWeirdDee/HomeLutions",
   },
@@ -80,118 +80,114 @@ const projects = [
     id: 6,
     title: "MitchKitchen",
     description:
-      "Mitch Kitchen, a gourmet food truck, is a luxury brand that offer customizable menus for events, and people in need.",
+      "Mitch Kitchen, a gourmet food truck, is a luxury brand that offer customizable menus for events and people in need.",
     image: MitchKitchen,
-    tech: ["React", "Vite", "TailwindCSS", "AOS"],
-    live: "https://mitch-kitchen.vercel.app",
+    tech: ["React", "Vite", "TailwindCSS"],
+    live: "https://mitch-kitchen.vercel.app/",
   },
 ];
 
 export default function Projects() {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000, 
-      easing: "ease-in-out",
-      once: true, 
-      offset: 100,
-    });
-  }, []);
-
   return (
     <section
       id="projects"
-      className="py-5 md:mt-0 text-left bg-black text-white"
+      className="py-10 text-left bg-black text-white"
     >
-      <div className="max-w-6xl mx-auto px-6">
-        <h2
-          className="text-4xl font-bold mb-4"
-          data-aos="fade-down"
-        >
+      <div className="max-w-6xl mx-auto px-4 md:px-6">
+        <h2 className="text-4xl font-bold mb-4">
           Featured Projects
         </h2>
-        <p
-          className="text-gray-400 mb-16"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
+
+        <p className="text-gray-400 mb-16">
           A showcase of my recent work, featuring modern web applications built
           with cutting-edge technologies and crafted with attention to detail.
         </p>
 
-        <div className="flex flex-col gap-24">
+        <div className="flex flex-col gap-4 md:gap-24">
           {projects.map((project, index) => (
-            <div
+           <motion.div
   key={project.id}
+  initial={{
+    opacity: 0,
+    x: index % 2 === 0 ? -80 : 80,
+    y: 40,
+  }}
+  whileInView={{
+    opacity: 1,
+    x: 0,
+    y: 0,
+  }}
+  transition={{
+    duration: 0.7,
+    ease: "easeOut",
+  }}
+  viewport={{ once: true, amount: 0.25 }}
   className={`flex flex-col lg:flex-row items-center gap-12
-    border border-white/20 rounded-3xl p-6
-    lg:border-0 lg:p-0
+    border border-white/30 bg-[#161616] rounded-3xl p-6
+    lg:border-0 lg:bg-transparent lg:p-0
     ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}
   `}
-  data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
 >
 
-              
-              <div
-                className="flex-1"
-                data-aos="zoom-in"
-                data-aos-delay="200"
-              >
+              {/* Image */}
+              <div className="flex-1">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="rounded-2xl shadow-lg h-full w-full object-cover hover:scale-[1.02] transition-transform duration-500"
+                  className="rounded-2xl shadow-lg w-full h-full object-cover
+                    hover:scale-[1.02] transition-transform duration-500"
                 />
               </div>
 
-               
-              <div
-                className="flex-1"
-                data-aos="fade-up"
-                data-aos-delay="400"
-              >
-                <h3 className="text-2xl font-bold mb-4">{project.title}</h3>
-                <p className="text-gray-400 mb-6">{project.description}</p>
+              {/* Content */}
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold mb-4">
+                  {project.title}
+                </h3>
 
-                
-                <div className="flex gap-4 flex-wrap mb-6">
+                <p className="text-gray-400 mb-6">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 bg-white/10 rounded-lg text-sm text-gray-300"
-                      data-aos="zoom-in-up"
-                      data-aos-delay={i * 100}
+                      className="px-3 py-1 rounded-lg text-sm font-semibold
+                        tracking-wide text-white/80 bg-white/5"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-               
-                <div className="flex gap-4">
-  <a
-    href={project.live}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="px-4 py-2 bg-purple-700 hover:bg-purple-800 rounded-lg text-sm font-medium transition-transform transform hover:scale-105"
-    data-aos="fade-right"
-  >
-    View Live
-  </a>
+                <div className="flex gap-2">
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-purple-700 hover:bg-purple-800
+                      rounded-lg text-sm font-medium transition-transform
+                      hover:scale-105"
+                  >
+                    View Live
+                  </a>
 
-  {project.repo && (
-    <a
-      href={project.repo}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="px-4 py-2 bg-gray-700 hover:bg-gray-800 rounded-lg text-sm font-medium transition-transform transform hover:scale-105"
-      data-aos="fade-left"
-    >
-      Repository
-    </a>
-  )}
-</div>
-  </div>
-            </div>
+                  {project.repo && (
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-gray-700 hover:bg-gray-800
+                        rounded-lg text-sm font-medium transition-transform
+                        hover:scale-105"
+                    >
+                      Repository
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
