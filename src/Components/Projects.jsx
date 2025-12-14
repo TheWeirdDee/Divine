@@ -130,7 +130,7 @@ export default function Projects() {
 >
 
               
-              <div className="flex-1 order-2 md:order-1">
+   <div className="flex-1 order-2 md:order-1">
   <img
     src={project.image}
     alt={project.title}
@@ -139,8 +139,6 @@ export default function Projects() {
   />
 </div>
 
-
-             
               <div className="flex-1">
                 <h3 className="text-2xl font-bold mb-2">
                   {project.title}

@@ -12,15 +12,15 @@ export default function ProfileCard() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".gsap-text", {
+      gsap.from(".reveal-text", {
+        y: 50,
         opacity: 0,
-        y: 40,
-        duration: 0.9,
+        duration: 0.8,
         ease: "power3.out",
-        stagger: 0.15,
+        stagger: 0.2,
         scrollTrigger: {
           trigger: textRef.current,
-          start: "top 80%",
+          start: "top 85%",
           toggleActions: "play none none none",
         },
       });
@@ -45,30 +45,27 @@ export default function ProfileCard() {
 
       <div className="relative z-10 bg-transparent p-6 md:p-10 rounded-2xl flex flex-col-reverse md:flex-row items-center gap-8 md:gap-16">
         {/* TEXT */}
-        <div
-          ref={textRef}
-          className="max-w-xl text-center md:text-left"
-        >
-          <h1 className="gsap-text mb-6 md:mb-20 text-3xl font-extrabold tracking-tight">
+        <div ref={textRef} className="max-w-xl text-center md:text-left">
+          <h1 className="reveal-text mb-6 md:mb-20 text-3xl font-extrabold tracking-tight">
             About Me
           </h1>
 
-          <h2 className="gsap-text inline-block px-5 py-3 text-3xl font-extrabold tracking-tight rounded-lg backdrop-blur-md bg-purple-700/10 border border-white/20 shadow-sm">
+          <h2 className="reveal-text inline-block px-5 py-3 text-3xl font-extrabold tracking-tight rounded-lg backdrop-blur-md bg-purple-700/10 border border-white/20 shadow-sm">
             Divine Dilibe
           </h2>
 
-          <p className="gsap-text text-purple-300 mt-3">
+          <p className="reveal-text text-purple-300 mt-3">
             Frontend Developer • UI Enthusiast
           </p>
 
-          <p className="gsap-text mt-6 text-gray-300 leading-relaxed">
+          <p className="reveal-text mt-6 text-gray-300 leading-relaxed">
             Hi! I am Divine, a Frontend Web Developer who loves turning designs
             into smooth, responsive web applications. Most of my work is with
             React, HTML, Tailwind CSS, and JavaScript but I also have a solid
             foundation in Next.js, Typescript, and Node.js.
           </p>
 
-          <p className="gsap-text mt-6 text-gray-300 leading-relaxed">
+          <p className="reveal-text mt-6 text-gray-300 leading-relaxed">
             I enjoy building clean, reusable components and making sure apps
             look great and work well on any device. Collaboration is a big
             part of how I work — I like solving problems with teammates and
@@ -77,7 +74,7 @@ export default function ProfileCard() {
             experiences that people actually enjoy using. <strong>HIRE ME!</strong>
           </p>
 
-          <div className="gsap-text mt-8 flex flex-wrap gap-4">
+          <div className="reveal-text mt-8 flex flex-wrap gap-4">
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
