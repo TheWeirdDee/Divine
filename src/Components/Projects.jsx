@@ -46,7 +46,7 @@ const projects = [
     description:
       "A full frontend clone of Resend, a developer-friendly email platform that lets you send, receive, and manage emails through a simple API. I recreated the UI including the landing page, feature pages, and overall user flow with a focus on responsiveness, accessibility, and pixel-perfect design.",
     image: Resend,
-    tech: ["React", "React Router", "TailwindCSS", "Framer Motion"],
+    tech: ["React", "TailwindCSS", "Framer Motion"],
     live: "https://resend-tau.vercel.app/",
     repo: "https://github.com/TheWeirdDee/Resend",
   },
@@ -58,8 +58,7 @@ const projects = [
     image: StudyLoop,
     tech: [
       "React",
-      "Express.js",
-      "MongoDB",
+      "MERN",
       "TailwindCSS",
       "Framer Motion",
     ],
@@ -82,7 +81,7 @@ const projects = [
     description:
       "Mitch Kitchen, a gourmet food truck, is a luxury brand that offer customizable menus for events and people in need.",
     image: MitchKitchen,
-    tech: ["React", "Vite", "TailwindCSS"],
+    tech: ["React", "TailwindCSS"],
     live: "https://mitch-kitchen.vercel.app/",
   },
 ];
@@ -94,11 +93,11 @@ export default function Projects() {
       className="py-10 text-left bg-black text-white"
     >
       <div className="max-w-6xl mx-auto px-4 md:px-6">
-        <h2 className="text-4xl font-bold mb-4">
+        <h2 className="text-4xl font-bold md:mb-4 mb-2">
           Featured Projects
         </h2>
 
-        <p className="text-gray-400 mb-16">
+        <p className="text-gray-400 md:mb-16 mb-6">
           A showcase of my recent work, featuring modern web applications built
           with cutting-edge technologies and crafted with attention to detail.
         </p>
@@ -122,7 +121,7 @@ export default function Projects() {
     ease: "easeOut",
   }}
   viewport={{ once: true, amount: 0.25 }}
-  className={`flex flex-col lg:flex-row items-center gap-12
+  className={`flex flex-col lg:flex-row items-center md:gap-12 gap-5
       bg-[#161616] rounded-3xl p-6
       lg:bg-transparent lg:p-0
     ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}
