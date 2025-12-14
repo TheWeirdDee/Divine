@@ -11,28 +11,49 @@ export default function ProfileCard() {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+  if (!containerRef.current) return;
 
-    const ctx = gsap.context(() => {
-      gsap.set(".reveal-text", { y: 80, opacity: 0 });
+  const mm = gsap.matchMedia();
 
-      gsap.to(".reveal-text", {
-        y: 0,
-        opacity: 1,
-        duration: 2,
-        ease: "power4.out",
-        stagger: 0.25,
-        scrollTrigger: {
-  trigger: containerRef.current,
-  start: "top 80%",
-  end: "bottom 50%",
-  scrub: 0.6,
-        },
-      });
-    }, containerRef);
+  mm.add("(min-width: 768px)", () => {
+    gsap.set(".reveal-text", { y: 80, opacity: 0 });
 
-    return () => ctx.revert();
-  }, []);
+    gsap.to(".reveal-text", {
+      y: 0,
+      opacity: 1,
+      duration: 1.6,
+      ease: "power4.out",
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 75%",
+        end: "bottom 50%",
+        scrub: 0.6,
+      },
+    });
+  });
+
+  mm.add("(max-width: 767px)", () => {
+    
+    gsap.set(".reveal-text", { y: 60, opacity: 0 });
+
+    gsap.to(".reveal-text", {
+      y: 0,
+      opacity: 1,
+      duration: 0.9,
+      ease: "power3.out",
+      stagger: 0.15,
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+    });
+  });
+
+  return () => mm.revert();
+}, []);
+
 
   return (
     <section
