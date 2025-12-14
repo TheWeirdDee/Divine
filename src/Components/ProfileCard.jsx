@@ -19,14 +19,14 @@ export default function ProfileCard() {
       gsap.to(".reveal-text", {
         y: 0,
         opacity: 1,
-        duration: 1.8,
+        duration: 2,
         ease: "power4.out",
         stagger: 0.25,
         scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 70%",
-          end: "bottom 40%",
-          toggleActions: "play none none none",
+  trigger: containerRef.current,
+  start: "top 80%",
+  end: "bottom 50%",
+  scrub: 0.6,
         },
       });
     }, containerRef);
@@ -94,7 +94,7 @@ export default function ProfileCard() {
             <div className="reveal-text flex gap-4 pt-4">
               <a
                 href="#projects"
-                className="px-4 py-2 border border-white rounded-lg text-sm hover:bg-white/10 transition"
+                className="px-4 py-2 border border-white/20 rounded-lg text-sm hover:bg-white/10 transition"
               >
                 View projects
               </a>
@@ -108,7 +108,6 @@ export default function ProfileCard() {
           </div>
         </div>
 
-        {/* IMAGE */}
         <motion.div
           initial={{ x: 80, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}

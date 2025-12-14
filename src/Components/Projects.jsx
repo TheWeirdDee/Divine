@@ -18,7 +18,6 @@ const projects = [
     tech: [
       "React",
       "Context API",
-      "TailwindCSS",
       "Framer Motion",
       "React Query",
       "MERN",
@@ -117,16 +116,20 @@ export default function Projects() {
     y: 0,
   }}
   transition={{
-    duration: 0.7,
+    duration: 0.8,
     ease: "easeOut",
   }}
-  viewport={{ once: true, amount: 0.25 }}
+  viewport={{
+    once: false,  
+    amount: 0.25,
+  }}
   className={`flex flex-col lg:flex-row items-center md:gap-12 gap-5
-      bg-[#161616] rounded-3xl p-6
-      lg:bg-transparent lg:p-0
+    bg-[#161616] rounded-3xl p-6
+    lg:bg-transparent lg:p-0
     ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}
   `}
 >
+
 
               
    <div className="flex-1 order-2 md:order-1">

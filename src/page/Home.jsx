@@ -1,8 +1,12 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
+ 
+import React, { useState, useEffect, useRef } from "react";
 import { FaGithub, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 import Projects from "../Components/Projects";
 import ProfileCard from "../Components/ProfileCard";
@@ -92,6 +96,9 @@ function Hero() {
   const [loop, setLoop] = useState(0);
   const [speed, setSpeed] = useState(150);
 
+  const paragraphRef = useRef(null);
+
+  
   useEffect(() => {
     const handleTyping = () => {
       const current = texts[loop % texts.length];
@@ -113,14 +120,36 @@ function Hero() {
 
     const timer = setTimeout(handleTyping, speed);
     return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, isDeleting, loop, speed]);
+
+ 
+  useEffect(() => {
+    if (!paragraphRef.current) return;
+
+    gsap.set(paragraphRef.current, {
+      opacity: 0,
+      y: 80,
+    });
+
+    gsap.to(paragraphRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 2,              
+      ease: "power4.out",        
+      scrollTrigger: {
+        trigger: paragraphRef.current,
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+    });
+  }, []);
 
   return (
     <header className="md:top-10 top-40 flex flex-col items-center justify-center text-center relative overflow-hidden px-6">
-      <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-80 h-36 rounded-full blur-3xl bg-gradient-to-t from-green-800/20 to-transparent pointer-events-none"></div>
+      <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-80 h-36 rounded-full blur-3xl bg-gradient-to-t from-green-800/20 to-transparent pointer-events-none" />
 
       <div className="max-w-5xl mx-auto">
+   
         <motion.div
           initial={{ opacity: 0, y: -80 }}
           animate={{ opacity: 1, y: [0, -20, 0] }}
@@ -139,72 +168,32 @@ function Hero() {
           initial={{ opacity: 0, x: -120 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="relative"
         >
           <h2 className="mb-16 text-[64px] md:text-[96px] lg:text-[75px] font-extrabold text-gray-700 opacity-40 leading-[0.85] tracking-tight">
             Hello there,
           </h2>
-          <h1 className="-mt-6 md:-mt-10 text-[44px] md:text-[56px] lg:text-[75px] font-extrabold text-white leading-[1.02] tracking-tight min-h-[100px] md:min-h-0 lg:min-h-0">
+
+          <h1 className="-mt-6 md:-mt-10 text-[44px] md:text-[56px] lg:text-[75px] font-extrabold text-white leading-[1.02] tracking-tight min-h-[100px]">
             {text}
             <span className="animate-pulse">|</span>
           </h1>
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 80 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="mt-8 text-gray-300 max-w-2xl mx-auto leading-relaxed text-left md:text-center"
+        
+        <p
+          ref={paragraphRef}
+          className="mt-10 text-gray-300 max-w-2xl mx-auto leading-relaxed text-left md:text-center"
         >
           I am a Front-End Developer with hands-on experience building modern,
           user-friendly web applications. I focus on crafting fast, accessible,
           and engaging digital experiences. My goal is to keep growing as a
           developer while delivering innovative, user-focused solutions.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.9 }}
-          className="mt-8 mb-8 flex items-center justify-center gap-6"
-        >
-          <a
-            href="https://x.com/devineishuman?s=21&t=7TaJwu1nHCUEhZLkvcLEbQ"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/6 grid place-items-center hover:scale-110 transition"
-          >
-            <FaTwitter className="text-gray-300" />
-          </a>
-          <a
-            href="https://wa.me/2349030129356"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/6 grid place-items-center hover:scale-110 transition"
-          >
-            <FaWhatsapp className="text-gray-300" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/divine-nation-647a571b3"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/6 grid place-items-center hover:scale-110 transition"
-          >
-            <FaLinkedin className="text-gray-300" />
-          </a>
-          <a
-            href="https://github.com/TheWeirdDee"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/6 grid place-items-center hover:scale-110 transition"
-          >
-            <FaGithub className="text-gray-300" />
-          </a>
-        </motion.div>
+        </p>
       </div>
     </header>
   );
 }
+
 
 export default function Portfolio() {
   return (
