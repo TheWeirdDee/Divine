@@ -130,8 +130,6 @@ export default function Projects() {
   `}
 >
 
-
-              
    <div className="flex-1 order-2 md:order-1">
   <img
     src={project.image}

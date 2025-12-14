@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
@@ -10,11 +9,14 @@ gsap.registerPlugin(ScrollTrigger);
 export default function ProfileCard() {
   const containerRef = useRef(null);
 
-  useEffect(() => {
+ useEffect(() => {
   if (!containerRef.current) return;
 
   const mm = gsap.matchMedia();
 
+  
+  // DESKTOP (SCRUB)
+  
   mm.add("(min-width: 768px)", () => {
     gsap.set(".reveal-text", { y: 80, opacity: 0 });
 
@@ -32,28 +34,33 @@ export default function ProfileCard() {
       },
     });
   });
-
+ 
+  // MOBILE (PER-ELEMENT TRIGGER)
+ 
   mm.add("(max-width: 767px)", () => {
-    
-    gsap.set(".reveal-text", { y: 60, opacity: 0 });
-
-    gsap.to(".reveal-text", {
-      y: 0,
-      opacity: 1,
-      duration: 0.9,
-      ease: "power3.out",
-      stagger: 0.15,
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 85%",
-        toggleActions: "play none none none",
-      },
+    gsap.utils.toArray(".reveal-text").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+            end: "bottom 10%",  
+            toggleActions: "play reverse play reverse",  
+            scrub: 0.3,
+          },
+        }
+      );
     });
   });
 
   return () => mm.revert();
 }, []);
-
 
   return (
     <section

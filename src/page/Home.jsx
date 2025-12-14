@@ -1,93 +1,16 @@
- 
 import React, { useState, useEffect, useRef } from "react";
-import { FaGithub, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
-import { HiMenu, HiX } from "react-icons/hi";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
+ 
 import Projects from "../Components/Projects";
 import ProfileCard from "../Components/ProfileCard";
 import Contact from "../Components/Contact";
 import TechStack from "../Components/TechStack";
 import MyAni from "../assets/Images/MyAni.jpg";
 
-function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const navLinks = [
-    { name: "Projects", href: "#projects" },
-    { name: "Resume", href: "/Resume.pdf" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
-  ];
-
-  return (
-    <nav className="w-full md:relative fixed md:top-10 top-0 flex justify-center pt-10 pb-7 z-50 backdrop-blur-sm bg-black/30">
-      <div className="rounded-full border border-gray-700 px-5 py-4 flex items-center justify-between md:w-full md:max-w-2xl w-[380px] backdrop-blur-sm bg-black/30">
-        <div className="md:hidden">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-gray-300 hover:text-white"
-          >
-            {isOpen ? <HiX size={26} /> : <HiMenu size={26} />}
-          </button>
-        </div>
-
-        {/* Desktop */}
-        <div className="hidden md:flex items-center gap-6">
-          {navLinks.map((link, i) => (
-            <React.Fragment key={i}>
-              <a
-                href={link.href}
-                className="text-gray-300 hover:text-white font-medium"
-              >
-                {link.name}
-              </a>
-              {i < navLinks.length - 1 && (
-                <span className="text-gray-600">|</span>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-
-        <a href="mailto:divinenation1@gmail.com">
-          <button className="bg-white/70 text-black px-4 py-3 rounded-2xl font-semibold shadow-[0_8px_30px_rgba(34,197,94,0.18)] text-base md:text-sm transition-transform duration-200 hover:bg-purple-600 hover:scale-105 active:scale-95">
-            Let&apos;s Connect 💻
-          </button>
-        </a>
-      </div>
-
-      {/* Mobile Menu */}
-      <div
-        className={`md:hidden fixed top-[99px] mt-10 left-1/2 transform -translate-x-1/2 w-full bg-black shadow-md overflow-hidden transition-all duration-500 ease-in-out z-40 ${
-          isOpen ? "max-h-[500px]" : "max-h-0"
-        }`}
-      >
-        <div className="grid-cols-1 gap-x-4 gap-y-3 px-4 py-4">
-          {navLinks.map((item, index) => (
-            <a
-              key={item.name}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className={`flex items-center text-left px-4 py-3 text-lg font-medium rounded-lg ${
-                index === 0 ? "mt-2 pt-4" : ""
-              } ${
-                window.location.hash === item.href
-                  ? "bg-[hsla(214,11%,13%,1)] text-white"
-                  : "text-[hsla(212,87%,97%,0.71)] hover:text-gray-300"
-              }`}
-            >
-              {item.name}
-            </a>
-          ))}
-        </div>
-      </div>
-    </nav>
-  );
-}
+gsap.registerPlugin(ScrollTrigger);
 
 function Hero() {
   const texts = ["I am Divine Dilibe", "I am a Frontend Developer"];
@@ -95,29 +18,24 @@ function Hero() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loop, setLoop] = useState(0);
   const [speed, setSpeed] = useState(150);
-
   const paragraphRef = useRef(null);
 
-  
+   
   useEffect(() => {
     const handleTyping = () => {
       const current = texts[loop % texts.length];
       const updatedText = isDeleting
         ? current.substring(0, text.length - 1)
         : current.substring(0, text.length + 1);
-
       setText(updatedText);
 
-      if (!isDeleting && updatedText === current) {
-        setTimeout(() => setIsDeleting(true), 1000);
-      } else if (isDeleting && updatedText === "") {
+      if (!isDeleting && updatedText === current) setTimeout(() => setIsDeleting(true), 1000);
+      else if (isDeleting && updatedText === "") {
         setIsDeleting(false);
         setLoop(loop + 1);
       }
-
       setSpeed(isDeleting ? 100 : 150);
     };
-
     const timer = setTimeout(handleTyping, speed);
     return () => clearTimeout(timer);
   }, [text, isDeleting, loop, speed]);
@@ -125,90 +43,88 @@ function Hero() {
  
   useEffect(() => {
     if (!paragraphRef.current) return;
+    const mm = gsap.matchMedia();
 
-    gsap.set(paragraphRef.current, {
-      opacity: 0,
-      y: 80,
+    mm.add("(min-width: 768px)", () => {
+      gsap.fromTo(
+        paragraphRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.5,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: paragraphRef.current,
+            start: "top 80%",
+            end: "bottom 60%",
+            scrub: 0.6,
+          },
+        }
+      );
     });
 
-    gsap.to(paragraphRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 2,              
-      ease: "power4.out",        
-      scrollTrigger: {
-        trigger: paragraphRef.current,
-        start: "top 85%",
-        toggleActions: "play none none none",
-      },
+    mm.add("(max-width: 767px)", () => {
+      gsap.fromTo(
+        paragraphRef.current,
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: paragraphRef.current,
+            start: "top 90%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
     });
+
+    return () => mm.revert();
   }, []);
 
   return (
     <header className="md:top-10 top-40 flex flex-col items-center justify-center text-center relative overflow-hidden px-6">
       <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-80 h-36 rounded-full blur-3xl bg-gradient-to-t from-green-800/20 to-transparent pointer-events-none" />
-
       <div className="max-w-5xl mx-auto">
-   
         <motion.div
           initial={{ opacity: 0, y: -80 }}
           animate={{ opacity: 1, y: [0, -20, 0] }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            repeatType: "loop",
-            ease: "linear",
-          }}
+          transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop", ease: "linear" }}
           className="mx-auto mb-6 w-26 h-26 rounded-xl bg-green-50 grid place-items-center shadow-sm overflow-hidden"
         >
           <img src={MyAni} alt="Profile Avatar" className="object-cover" />
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: -120 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
+        <motion.div initial={{ opacity: 0, x: -120 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, delay: 0.3 }}>
           <h2 className="mb-16 text-[64px] md:text-[96px] lg:text-[75px] font-extrabold text-gray-700 opacity-40 leading-[0.85] tracking-tight">
             Hello there,
           </h2>
-
           <h1 className="-mt-6 md:-mt-10 text-[44px] md:text-[56px] lg:text-[75px] font-extrabold text-white leading-[1.02] tracking-tight min-h-[100px]">
-            {text}
-            <span className="animate-pulse">|</span>
+            {text}<span className="animate-pulse">|</span>
           </h1>
         </motion.div>
 
-        
-        <p
-          ref={paragraphRef}
-          className="mt-10 text-gray-300 max-w-2xl mx-auto leading-relaxed text-left md:text-center"
-        >
-          I am a Front-End Developer with hands-on experience building modern,
-          user-friendly web applications. I focus on crafting fast, accessible,
-          and engaging digital experiences. My goal is to keep growing as a
-          developer while delivering innovative, user-focused solutions.
+        <p ref={paragraphRef} className="mt-10 text-gray-300 max-w-2xl mx-auto leading-relaxed text-left md:text-center">
+          I am a Front-End Developer with hands-on experience building modern, user-friendly web applications. I focus on crafting fast, accessible, and engaging digital experiences. My goal is to keep growing as a developer while delivering innovative, user-focused solutions.
         </p>
       </div>
     </header>
   );
 }
 
-
 export default function Portfolio() {
   return (
     <div className="min-h-screen bg-black text-white font-sans">
-      <Navbar />
       <Hero />
-
       <section id="projects" className="md:pt-20 pt-48">
         <Projects />
       </section>
-
       <section id="about" className="py-5">
         <ProfileCard />
       </section>
-
       <TechStack />
       <section id="contact">
         <Contact />
