@@ -7,6 +7,9 @@ import Resend from "../assets/Images/Resend.png";
 import StudyLoop from "../assets/Images/StudyLoop.png";
 import HomeLutions from "../assets/Images/HomeLutions.png";
 import MitchKitchen from "../assets/Images/MitchKitchenn.png";
+import Amante from "../assets/Images/Amante.png";
+import Inklune from "../assets/Images/InkluneImage.png";
+
 
 const projects = [
   {
@@ -50,7 +53,18 @@ const projects = [
     repo: "https://github.com/TheWeirdDee/Resend",
   },
   {
-    id: 4,
+  id: 4,
+  title: "Amante",
+  description:
+    "A luxury sofa brand landing page built with Next.js, featuring smooth scroll animations and premium UI interactions powered by GSAP. Designed to highlight product elegance with strong visual hierarchy, bold typography, and a conversion-focused layout. Fully responsive and optimized for seamless user experience across devices.",
+  image: Amante,
+  tech: ["Next.js", "TailwindCSS", "GSAP"],
+  live: "https://amante-virid.vercel.app/",
+  repo: "https://github.com/TheWeirdDee/Amante",
+},
+
+  {
+    id: 5,
     title: "StudyLoop",
     description:
       "StudyLoop is a full-stack MERN (MongoDB, Express, React, Node.js) web app that helps users learn in an interactive environment, earn achievements, connect with study partners, and build consistent learning streaks.",
@@ -64,8 +78,21 @@ const projects = [
     live: "https://study-loop-seven.vercel.app/",
     repo: "https://github.com/faykey/studyLoop",
   },
+  
+{
+  id: 6,
+  title: "Inklune",
+  description:
+    "A modern blog landing page built with Next.js, designed with clean typography and structured content hierarchy. Implemented reusable components, featured post sections, and newsletter call-to-actions with a fully responsive layout optimized for all screen sizes.",
+  image: Inklune,
+  tech: ["Next.js", "TailwindCSS"],
+  live: "https://inklune-indol.vercel.app/",
+  repo: "https://github.com/TheWeirdDee/Inklune",
+},
+
+
   {
-    id: 5,
+    id: 7,
     title: "HomeLutions",
     description:
       "Need a HandyMan? HomeLutions connect busy homeowners with skilled professionals who take pride in quality work and exceptional handyman services.",
@@ -75,7 +102,7 @@ const projects = [
     repo: "https://github.com/TheWeirdDee/HomeLutions",
   },
   {
-    id: 6,
+    id: 8,
     title: "MitchKitchen",
     description:
       "Mitch Kitchen, a gourmet food truck, is a luxury brand that offer customizable menus for events and people in need.",
