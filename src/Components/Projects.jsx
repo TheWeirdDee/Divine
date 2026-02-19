@@ -9,6 +9,7 @@ import HomeLutions from "../assets/Images/HomeLutions.png";
 import MitchKitchen from "../assets/Images/MitchKitchenn.png";
 import Amante from "../assets/Images/Amante.png";
 import Inklune from "../assets/Images/InkluneImage.png";
+import Roomy from "../assets/Images/Roomy.png";
 
 
 const projects = [
@@ -53,18 +54,18 @@ const projects = [
     repo: "https://github.com/TheWeirdDee/Resend",
   },
   {
-  id: 4,
-  title: "Amante",
-  description:
-    "A luxury sofa brand landing page built with Next.js, featuring smooth scroll animations and premium UI interactions powered by GSAP. Designed to highlight product elegance with strong visual hierarchy, bold typography, and a conversion-focused layout. Fully responsive and optimized for seamless user experience across devices.",
-  image: Amante,
-  tech: ["Next.js", "TailwindCSS", "GSAP"],
-  live: "https://amante-virid.vercel.app/",
-  repo: "https://github.com/TheWeirdDee/Amante",
-},
+    id: 5,
+    title: "Roomy",
+    description:
+      "A modern housing platform designed to make finding rooms and flatmates in Ireland safer and more transparent. Contributed as a Frontend QA / Manual Tester, ensuring seamless user flows, responsive layouts, and reliable feature functionality across devices. Focused on validating verified listings, identity checks, and AI-powered matching to enhance user trust and platform stability.",
+    image: Roomy,
+    tech: ["K6", "Postman", "DevTools"],
+    live: "https://roomy.ie/",
+    repo: null,
+  },
 
   {
-    id: 5,
+    id: 6,
     title: "StudyLoop",
     description:
       "StudyLoop is a full-stack MERN (MongoDB, Express, React, Node.js) web app that helps users learn in an interactive environment, earn achievements, connect with study partners, and build consistent learning streaks.",
@@ -78,21 +79,21 @@ const projects = [
     live: "https://study-loop-seven.vercel.app/",
     repo: "https://github.com/faykey/studyLoop",
   },
-  
-{
-  id: 6,
-  title: "Inklune",
-  description:
-    "A modern blog landing page built with Next.js, designed with clean typography and structured content hierarchy. Implemented reusable components, featured post sections, and newsletter call-to-actions with a fully responsive layout optimized for all screen sizes.",
-  image: Inklune,
-  tech: ["Next.js", "TailwindCSS"],
-  live: "https://inklune-indol.vercel.app/",
-  repo: "https://github.com/TheWeirdDee/Inklune",
-},
-
 
   {
     id: 7,
+    title: "Inklune",
+    description:
+      "A modern blog landing page built with Next.js, designed with clean typography and structured content hierarchy. Implemented reusable components, featured post sections, and newsletter call-to-actions with a fully responsive layout optimized for all screen sizes.",
+    image: Inklune,
+    tech: ["Next.js", "TailwindCSS"],
+    live: "https://inklune-indol.vercel.app/",
+    repo: "https://github.com/TheWeirdDee/Inklune",
+  },
+
+
+  {
+    id: 8,
     title: "HomeLutions",
     description:
       "Need a HandyMan? HomeLutions connect busy homeowners with skilled professionals who take pride in quality work and exceptional handyman services.",
@@ -102,7 +103,7 @@ const projects = [
     repo: "https://github.com/TheWeirdDee/HomeLutions",
   },
   {
-    id: 8,
+    id: 9,
     title: "MitchKitchen",
     description:
       "Mitch Kitchen, a gourmet food truck, is a luxury brand that offer customizable menus for events and people in need.",
@@ -130,41 +131,41 @@ export default function Projects() {
 
         <div className="flex flex-col gap-4 md:gap-24">
           {projects.map((project, index) => (
-           <motion.div
-  key={project.id}
-  initial={{
-    opacity: 0,
-    x: index % 2 === 0 ? -80 : 80,
-    y: 40,
-  }}
-  whileInView={{
-    opacity: 1,
-    x: 0,
-    y: 0,
-  }}
-  transition={{
-    duration: 0.8,
-    ease: "easeOut",
-  }}
-  viewport={{
-    once: false,  
-    amount: 0.25,
-  }}
-  className={`flex flex-col lg:flex-row items-center md:gap-12 gap-5
+            <motion.div
+              key={project.id}
+              initial={{
+                opacity: 0,
+                x: index % 2 === 0 ? -80 : 80,
+                y: 40,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.8,
+                ease: "easeOut",
+              }}
+              viewport={{
+                once: false,
+                amount: 0.25,
+              }}
+              className={`flex flex-col lg:flex-row items-center md:gap-12 gap-5
     bg-[#161616] rounded-3xl p-6
     lg:bg-transparent lg:p-0
     ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}
   `}
->
+            >
 
-   <div className="flex-1 order-2 md:order-1">
-  <img
-    src={project.image}
-    alt={project.title}
-    className="rounded-2xl shadow-lg w-full h-full object-cover
+              <div className="flex-1 order-2 md:order-1">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="rounded-2xl shadow-lg w-full h-full object-cover
       hover:scale-[1.02] transition-transform duration-500"
-  />
-</div>
+                />
+              </div>
 
               <div className="flex-1">
                 <h3 className="text-2xl font-bold mb-2">
