@@ -43,8 +43,8 @@ const projects = [
       "Framer Motion",
       "React Router"
     ],
-    live: "https://your-grain-archive-link.com",
-    repo: "https://github.com/TheWeirdDee/Resend",
+    live: "https://grain-archive.vercel.app/",
+    repo: "https://github.com/TheWeirdDee/grain-archive",
   },
   {
     id: 3,
