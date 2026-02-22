@@ -10,6 +10,7 @@ import MitchKitchen from "../assets/Images/MitchKitchenn.png";
 import Amante from "../assets/Images/Amante.png";
 import Inklune from "../assets/Images/InkluneImage.png";
 import Roomy from "../assets/Images/Roomy.png";
+import GrainArchive from "../assets/Images/Grain.png";
 
 
 const projects = [
@@ -28,20 +29,22 @@ const projects = [
     ],
     live: "https://tradeflix-eosin.vercel.app/",
   },
+
   {
     id: 2,
-    title: "Hunch",
+    title: "Grain Archive",
     description:
-      "Hunch is a personalized nutrition and meal-planning platform that helps users find the right meals for their goals, preferences, and lifestyle. It asks a few simple questions about your health goals, dietary needs, and habits, then it recommends a personalized meal plan.",
-    image: Hunch,
+      "Grain Archive is an editorial platform documenting the fuzz, fragments, and forgotten textures of music, film, and visual culture. Built with a strong emphasis on atmosphere and motion, the site blends archival aesthetics with modern web animation to create an immersive browsing experience.",
+    image: GrainArchive,
     tech: [
       "React",
-      "Context API",
       "TailwindCSS",
+      "GSAP",
       "Framer Motion",
-      "Leaflet",
+      "React Router"
     ],
-    live: "https://www.hunch.ng/",
+    live: "https://your-grain-archive-link.com",
+    repo: "https://github.com/TheWeirdDee/Resend",
   },
   {
     id: 3,
@@ -54,6 +57,21 @@ const projects = [
     repo: "https://github.com/TheWeirdDee/Resend",
   },
   {
+    id: 4,
+    title: "Amante",
+    description:
+      "A luxury sofa brand landing page built with Next.js, featuring smooth scroll animations and premium UI interactions powered by GSAP. Designed to highlight product elegance with strong visual hierarchy, bold typography, and a conversion-focused layout. Fully responsive and optimized for seamless user experience across devices.",
+    image: Amante,
+    tech: [
+      "Next.js",
+      "TailwindCSS",
+      "GSAP"
+    ],
+    live: "https://amante-virid.vercel.app/",
+    repo: "https://github.com/TheWeirdDee/Amante",
+  },
+
+  {
     id: 5,
     title: "Roomy",
     description:
@@ -63,7 +81,6 @@ const projects = [
     live: "https://roomy.ie/",
     repo: null,
   },
-
   {
     id: 6,
     title: "StudyLoop",
@@ -90,10 +107,24 @@ const projects = [
     live: "https://inklune-indol.vercel.app/",
     repo: "https://github.com/TheWeirdDee/Inklune",
   },
-
-
   {
     id: 8,
+    title: "Hunch",
+    description:
+      "Hunch is a personalized nutrition and meal-planning platform that helps users find the right meals for their goals, preferences, and lifestyle. It asks a few simple questions about your health goals, dietary needs, and habits, then it recommends a personalized meal plan.",
+    image: Hunch,
+    tech: [
+      "React",
+      "Context API",
+      "TailwindCSS",
+      "Framer Motion",
+      "Leaflet",
+    ],
+    live: "https://www.hunch.ng/",
+  },
+
+  {
+    id: 9,
     title: "HomeLutions",
     description:
       "Need a HandyMan? HomeLutions connect busy homeowners with skilled professionals who take pride in quality work and exceptional handyman services.",
@@ -103,7 +134,7 @@ const projects = [
     repo: "https://github.com/TheWeirdDee/HomeLutions",
   },
   {
-    id: 9,
+    id: 10,
     title: "MitchKitchen",
     description:
       "Mitch Kitchen, a gourmet food truck, is a luxury brand that offer customizable menus for events and people in need.",
