@@ -11,11 +11,27 @@ import Amante from "../assets/Images/Amante.png";
 import Inklune from "../assets/Images/InkluneImage.png";
 import Roomy from "../assets/Images/Roomy.png";
 import GrainArchive from "../assets/Images/Grain.png";
+import Stretchee from "../assets/Images/Stretchee.png";
 
 
 const projects = [
   {
-    id: 1,
+  id: 1,
+  title: "Stretchee",
+  description:
+    "Stretchee is a modern fitness and wellness web application designed to help users stay consistent with their workouts. It offers structured programs, categorized training sessions (Strength, Yoga, Cardio, Recovery), personalized dashboards, progress tracking, and a clean responsive UI optimized for mobile and desktop.",
+  image: Stretchee,
+  tech: [
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Zustand",
+    "Supabase",
+  ],
+  live: "https://stretchee.vercel.app/",
+},
+  {
+    id: 2,
     title: "TradeFlix",
     description:
       "TradeFlix is an MVP-stage trading platform built to support beginner traders through affordable trade journaling, AI-driven recommendations, mentor comparison tools, and a unified dashboard for progress tracking.",
@@ -31,7 +47,7 @@ const projects = [
   },
 
   {
-    id: 2,
+    id: 3,
     title: "Grain Archive",
     description:
       "Grain Archive is an editorial platform documenting the fuzz, fragments, and forgotten textures of music, film, and visual culture. Built with a strong emphasis on atmosphere and motion, the site blends archival aesthetics with modern web animation to create an immersive browsing experience.",
@@ -47,17 +63,17 @@ const projects = [
     repo: "https://github.com/TheWeirdDee/grain-archive",
   },
   {
-    id: 3,
+    id: 4,
     title: "Resend",
     description:
       "A full frontend clone of Resend, a developer-friendly email platform that lets you send, receive, and manage emails through a simple API. I recreated the UI including the landing page, feature pages, and overall user flow with a focus on responsiveness, accessibility, and pixel-perfect design.",
     image: Resend,
-    tech: ["React", "TailwindCSS", "Framer Motion"],
+    tech: ["React.js", "TailwindCSS", "Framer Motion"],
     live: "https://resend-tau.vercel.app/",
     repo: "https://github.com/TheWeirdDee/Resend",
   },
   {
-    id: 4,
+    id: 5,
     title: "Amante",
     description:
       "A luxury sofa brand landing page built with Next.js, featuring smooth scroll animations and premium UI interactions powered by GSAP. Designed to highlight product elegance with strong visual hierarchy, bold typography, and a conversion-focused layout. Fully responsive and optimized for seamless user experience across devices.",
@@ -72,7 +88,7 @@ const projects = [
   },
 
   {
-    id: 5,
+    id: 6,
     title: "Roomy",
     description:
       "A modern housing platform designed to make finding rooms and flatmates in Ireland safer and more transparent. Contributed as a Frontend QA / Manual Tester, ensuring seamless user flows, responsive layouts, and reliable feature functionality across devices. Focused on validating verified listings, identity checks, and AI-powered matching to enhance user trust and platform stability.",
@@ -82,7 +98,7 @@ const projects = [
     repo: null,
   },
   {
-    id: 6,
+    id: 7,
     title: "StudyLoop",
     description:
       "StudyLoop is a full-stack MERN (MongoDB, Express, React, Node.js) web app that helps users learn in an interactive environment, earn achievements, connect with study partners, and build consistent learning streaks.",
@@ -98,7 +114,7 @@ const projects = [
   },
 
   {
-    id: 7,
+    id: 8,
     title: "Inklune",
     description:
       "A modern blog landing page built with Next.js, designed with clean typography and structured content hierarchy. Implemented reusable components, featured post sections, and newsletter call-to-actions with a fully responsive layout optimized for all screen sizes.",
@@ -108,7 +124,7 @@ const projects = [
     repo: "https://github.com/TheWeirdDee/Inklune",
   },
   {
-    id: 8,
+    id: 9,
     title: "Hunch",
     description:
       "Hunch is a personalized nutrition and meal-planning platform that helps users find the right meals for their goals, preferences, and lifestyle. It asks a few simple questions about your health goals, dietary needs, and habits, then it recommends a personalized meal plan.",
@@ -124,7 +140,7 @@ const projects = [
   },
 
   {
-    id: 9,
+    id: 10,
     title: "HomeLutions",
     description:
       "Need a HandyMan? HomeLutions connect busy homeowners with skilled professionals who take pride in quality work and exceptional handyman services.",
@@ -134,7 +150,7 @@ const projects = [
     repo: "https://github.com/TheWeirdDee/HomeLutions",
   },
   {
-    id: 10,
+    id: 11,
     title: "MitchKitchen",
     description:
       "Mitch Kitchen, a gourmet food truck, is a luxury brand that offer customizable menus for events and people in need.",
