@@ -1,27 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-html {
-  font-family: 'Inter', sans-serif;
-}
-
-html {
+html,
+body {
+  font-family: "Outfit", sans-serif;
   background: black;
   scroll-behavior: smooth;
-}
-
-
-html, body {
   overflow-x: hidden;
   overflow-y: auto;
 }
- 
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playfair Display", serif;
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 .no-scrollbar {
-   overflow-x: auto;
-  scrollbar-gutter: stable overlay;   
+  overflow-x: auto;
+  scrollbar-gutter: stable overlay;
 }
-
- 
