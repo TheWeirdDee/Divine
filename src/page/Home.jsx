@@ -194,14 +194,70 @@ function Hero() {
   );
 }
 
+const MovingText = () => {
+  return (
+    <div className="relative w-full md:mt-16 mt-36 h-[200px] md:h-[200px] flex items-center justify-center overflow-hidden bg-transparent md:my-16">
+      
+      {/* Behind */}
+      <div className="absolute w-[150%] md:w-[125%] h-10 bg-[#111] transform -rotate-[10deg] md:-rotate-[7deg] flex items-center shadow-lg border-y border-black z-0">
+        <motion.div
+          animate={{ x: ["-50%", "0%"] }}
+          transition={{ ease: "linear", duration: 35, repeat: Infinity }}
+          className="flex whitespace-nowrap w-max text-gray-300"
+        >
+          <div className="flex w-max">
+            {[...Array(15)].map((_, i) => (
+              <span key={`a-${i}`} className="mx-8 md:mx-16 text-lg md:text-xl font-medium tracking-widest">
+                Currently open to new roles
+              </span>
+            ))}
+          </div>
+          <div className="flex w-max">
+            {[...Array(15)].map((_, i) => (
+              <span key={`b-${i}`} className="mx-8 md:mx-16 text-lg md:text-xl font-medium tracking-widest">
+                Currently open to new roles
+              </span>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      
+      <div className="absolute w-[150%] md:w-[125%] h-10 bg-[#e5e5e5] transform rotate-[10deg] md:rotate-[7deg] flex items-center shadow-xl z-10">
+        <motion.div
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ ease: "linear", duration: 35, repeat: Infinity }}
+          className="flex whitespace-nowrap w-max text-[#111]"
+        >
+          <div className="flex w-max">
+            {[...Array(15)].map((_, i) => (
+              <span key={`a-${i}`} className="mx-8 md:mx-16 text-lg md:text-xl font-medium tracking-widest">
+                Got a project? Let&apos;s hear it!
+              </span>
+            ))}
+          </div>
+          <div className="flex w-max">
+            {[...Array(15)].map((_, i) => (
+              <span key={`b-${i}`} className="mx-8 md:mx-16 text-lg md:text-xl font-medium tracking-widest">
+                Got a project? Let&apos;s hear it!
+              </span>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+    </div>
+  );
+};
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen bg-black text-white font-sans">
+    <div className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
       <Navbar />
       <Hero />
+      <MovingText />
 
-      <section id="projects" className="md:pt-20 pt-48">
+      <section id="projects" className="md:pt-16 pt-10">
         <Projects />
       </section>
 
