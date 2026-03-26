@@ -31,7 +31,7 @@ const projects = [
       "Viem",
       "Privy",
     ],
-    live: "https://remlo-drab.vercel.app/",
+    live: "https://www.remlo.xyz/",
     repo: "https://github.com/TheWeirdDee/remlo",
   },
   {
