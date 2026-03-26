@@ -13,6 +13,7 @@ import {
   SiJira, 
   SiGreensock,
   SiShadcnui,
+  SiSolidity,
 } from "react-icons/si";
 import { SiFramer, SiReactquery  } from "react-icons/si"; 
 import { useEffect } from "react";
@@ -41,6 +42,7 @@ export default function TechSection() {
     { name: "Jira", icon: SiJira, color: "#0052CC" },
     { name: "shadcn/ui", icon: SiShadcnui, color: "#000000" },
     { name: "GSAP", icon: SiGreensock, color: "#88CE02" }, 
+    { name: "Solidity", icon: SiSolidity, color: "#363636" },
   ];
 
   return (
