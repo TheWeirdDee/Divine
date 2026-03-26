@@ -100,9 +100,11 @@ export default function ProfileCard() {
           <div className="overflow-hidden">
             <p className="reveal-text text-gray-300 leading-relaxed">
               Hi! I am Divine, a Frontend Web Developer who loves turning designs
-              into smooth, responsive web applications. Most of my work is with
-              React, HTML, Tailwind CSS, and JavaScript but I also have a solid
-              foundation in Next.js, Typescript, and Node.js.
+              into smooth, high-converting, and responsive web applications and Products. Most 
+              of my work involves React, HTML, Tailwind CSS, and JavaScript, 
+              alongside GSAP and Framer Motion for animations. I also have a solid 
+              foundation in Next.js, TypeScript, and Node.js. Other tools and 
+              skills are listed below.
             </p>
           </div>
 
