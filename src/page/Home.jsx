@@ -96,7 +96,7 @@ function Hero() {
   const [loop, setLoop] = useState(0);
   const [speed, setSpeed] = useState(150);
 
-  const paragraphRef = useRef(null);
+
 
   
   useEffect(() => {
@@ -123,26 +123,7 @@ function Hero() {
   }, [text, isDeleting, loop, speed]);
 
  
-  useEffect(() => {
-    if (!paragraphRef.current) return;
 
-    gsap.set(paragraphRef.current, {
-      opacity: 0,
-      y: 80,
-    });
-
-    gsap.to(paragraphRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 2,              
-      ease: "power4.out",        
-      scrollTrigger: {
-        trigger: paragraphRef.current,
-        start: "top 85%",
-        toggleActions: "play none none none",
-      },
-    });
-  }, []);
 
   return (
     <header className="md:top-10 top-40 flex flex-col items-center justify-center text-center relative overflow-hidden px-6">
@@ -180,15 +161,7 @@ function Hero() {
         </motion.div>
 
         
-        <p
-          ref={paragraphRef}
-          className="mt-10 text-gray-300 max-w-2xl mx-auto leading-relaxed text-left md:text-center"
-        >
-          I am a Front-End Developer with hands-on experience building modern,
-          user-friendly web applications. I focus on crafting fast, accessible,
-          and engaging digital experiences. My goal is to keep growing as a
-          developer while delivering innovative, user-focused solutions.
-        </p>
+
       </div>
     </header>
   );
@@ -251,15 +224,51 @@ const MovingText = () => {
 };
 
 export default function Portfolio() {
+  const paragraphRef = useRef(null);
+
+  useEffect(() => {
+    if (!paragraphRef.current) return;
+
+    gsap.set(paragraphRef.current, {
+      opacity: 0,
+      y: 80,
+    });
+
+    gsap.to(paragraphRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 2,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: paragraphRef.current,
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
       <Navbar />
       <Hero />
       <MovingText />
 
+      <div className="max-w-5xl mx-auto px-6 mb-12">
+        <p
+          ref={paragraphRef}
+          className="text-gray-300 max-w-2xl mx-auto leading-relaxed text-left md:text-center text-lg italic"
+        >
+          I am a Front-End Developer with hands-on experience building modern,
+          user-friendly web applications. I focus on crafting fast, accessible,
+          and engaging digital experiences. My goal is to keep growing as a
+          developer while delivering innovative, user-focused solutions.
+        </p>
+      </div>
+
       <section id="projects" className="md:pt-16 pt-10">
         <Projects />
       </section>
+
 
       <section id="about" className="py-5">
         <ProfileCard />
