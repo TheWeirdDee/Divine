@@ -13,11 +13,27 @@ import Roomy from "../assets/Images/Roomy.png";
 import GrainArchive from "../assets/Images/Grain.png";
 import Stretchee from "../assets/Images/Stretchee.png";
 import Remlo from "../assets/Images/Remlo.png";
+import BlindMarkets from "../assets/Images/BlindMarkets.png";
 
 
 const projects = [
   {
     id: 1,
+    title: "BlindMarkets",
+    description:
+      "Privacy-preserving Bitcoin intent execution with a frontend control console, gateway API, coordinator, observer, reference solver, and Starknet contracts.",
+    image: BlindMarkets,
+    tech: [
+      "Next.js",
+      "Rust",
+      "Cairo",
+      "Starknet"
+    ],
+    live: "https://www.blindmarkets.xyz/",
+    repo: "https://github.com/TheWeirdDee/blindmarkets",
+  },
+  {
+    id: 2,
     title: "Remlo",
     description:
       "Remlo is a borderless enterprise payroll and yield routing protocol. It looks and feels like a modern B2B SaaS product — not a crypto dApp. The blockchain layer is invisible to employees. The stablecoin settlement layer is invisible to non-technical employers.",
@@ -35,7 +51,7 @@ const projects = [
     repo: "https://github.com/TheWeirdDee/remlo",
   },
   {
-    id: 2,
+    id: 3,
     title: "Stretchee",
     description:
       "Stretchee is a modern fitness and wellness web application designed to help users stay consistent with their workouts. It offers structured programs, categorized training sessions (Strength, Yoga, Cardio, Recovery), personalized dashboards, progress tracking, and a clean responsive UI optimized for mobile and desktop.",
@@ -51,7 +67,7 @@ const projects = [
   },
 
   {
-    id: 3,
+    id: 4,
     title: "TradeFlix",
     description:
       "TradeFlix is an MVP-stage trading platform built to support beginner traders through affordable trade journaling, AI-driven recommendations, mentor comparison tools, and a unified dashboard for progress tracking.",
@@ -67,7 +83,7 @@ const projects = [
   },
 
   {
-    id: 4,
+    id: 5,
     title: "Grain Archive",
     description:
       "Grain Archive is an editorial platform documenting the fuzz, fragments, and forgotten textures of music, film, and visual culture. Built with a strong emphasis on atmosphere and motion, the site blends archival aesthetics with modern web animation to create an immersive browsing experience.",
@@ -83,7 +99,7 @@ const projects = [
     repo: "https://github.com/TheWeirdDee/grain-archive",
   },
   {
-    id: 5,
+    id: 6,
     title: "Resend",
     description:
       "A full frontend clone of Resend, a developer-friendly email platform that lets you send, receive, and manage emails through a simple API. I recreated the UI including the landing page, feature pages, and overall user flow with a focus on responsiveness, accessibility, and pixel-perfect design.",
@@ -93,7 +109,7 @@ const projects = [
     repo: "https://github.com/TheWeirdDee/Resend",
   },
   {
-    id: 6,
+    id: 7,
     title: "Amante",
     description:
       "A luxury sofa brand landing page built with Next.js, featuring smooth scroll animations and premium UI interactions powered by GSAP. Designed to highlight product elegance with strong visual hierarchy, bold typography, and a conversion-focused layout. Fully responsive and optimized for seamless user experience across devices.",
@@ -108,7 +124,7 @@ const projects = [
   },
 
   {
-    id: 7,
+    id: 8,
     title: "Roomy",
     description:
       "A modern housing platform designed to make finding rooms and flatmates in Ireland safer and more transparent. Contributed as a Frontend QA / Manual Tester, ensuring seamless user flows, responsive layouts, and reliable feature functionality across devices. Focused on validating verified listings, identity checks, and AI-powered matching to enhance user trust and platform stability.",
@@ -118,7 +134,7 @@ const projects = [
     repo: null,
   },
   {
-    id: 8,
+    id: 9,
     title: "StudyLoop",
     description:
       "StudyLoop is a full-stack MERN (MongoDB, Express, React, Node.js) web app that helps users learn in an interactive environment, earn achievements, connect with study partners, and build consistent learning streaks.",
@@ -134,7 +150,7 @@ const projects = [
   },
 
   {
-    id: 9,
+    id: 10,
     title: "Inklune",
     description:
       "A modern blog landing page built with Next.js, designed with clean typography and structured content hierarchy. Implemented reusable components, featured post sections, and newsletter call-to-actions with a fully responsive layout optimized for all screen sizes.",
@@ -144,7 +160,7 @@ const projects = [
     repo: "https://github.com/TheWeirdDee/Inklune",
   },
   {
-    id: 10,
+    id: 11,
     title: "Hunch",
     description:
       "Hunch is a personalized nutrition and meal-planning platform that helps users find the right meals for their goals, preferences, and lifestyle. It asks a few simple questions about your health goals, dietary needs, and habits, then it recommends a personalized meal plan.",
@@ -160,7 +176,7 @@ const projects = [
   },
 
   {
-    id: 11,
+    id: 12,
     title: "HomeLutions",
     description:
       "Need a HandyMan? HomeLutions connect busy homeowners with skilled professionals who take pride in quality work and exceptional handyman services.",
@@ -170,7 +186,7 @@ const projects = [
     repo: "https://github.com/TheWeirdDee/HomeLutions",
   },
   {
-    id: 12,
+    id: 13,
     title: "MitchKitchen",
     description:
       "Mitch Kitchen, a gourmet food truck, is a luxury brand that offer customizable menus for events and people in need.",
