@@ -13,7 +13,7 @@ import Roomy from "../assets/Images/Roomy.png";
 import GrainArchive from "../assets/Images/Grain.png";
 import Stretchee from "../assets/Images/Stretchee.png";
 import Remlo from "../assets/Images/Remlo.png";
-import BlindMarkets from "../assets/Images/BlindMarkets.png";
+import BlindMarkets from "../assets/Images/Blindmarkets.png";
 
 
 const projects = [
