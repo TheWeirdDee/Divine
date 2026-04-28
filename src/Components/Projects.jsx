@@ -224,7 +224,7 @@ export default function Projects() {
   return (
     <section
       ref={sectionRef}
-      id="projects"
+      id="work"
       style={{
         padding: "4rem 5vw",
         maxWidth: "1200px",
@@ -239,7 +239,7 @@ export default function Projects() {
         fontFamily: "monospace",
         fontSize: "11px",
         letterSpacing: "0.2em",
-        color: "#c8f542",
+        color: "var(--accent-color)",
         marginBottom: "1rem",
         textTransform: "uppercase",
         margin: "0 0 1rem 0",
@@ -252,7 +252,7 @@ export default function Projects() {
         fontFamily: "serif",
         fontSize: "clamp(28px, 4vw, 52px)",
         fontWeight: 700,
-        color: "#f0ede8",
+        color: "var(--text-primary)",
         marginBottom: "4rem",
         lineHeight: 1.1,
         margin: "0 0 4rem 0",
@@ -261,7 +261,7 @@ export default function Projects() {
       </h2>
 
       {/* Project list */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+      <div style={{ borderTop: "1px solid rgba(var(--text-rgb), 0.06)" }}>
         {projects.map((p, i) => (
           <div
             key={i}
@@ -274,9 +274,9 @@ export default function Projects() {
               gap: "2rem",
               alignItems: "center",
               padding: "2rem 1rem",
-              borderBottom: "1px solid rgba(255,255,255,0.06)",
+              borderBottom: "1px solid rgba(var(--text-rgb), 0.06)",
               transition: "background 0.2s",
-              background: hovered === i ? "rgba(255,255,255,0.025)" : "transparent",
+              background: hovered === i ? "rgba(var(--text-rgb), 0.025)" : "transparent",
               borderRadius: "6px",
             }}
           >
@@ -285,14 +285,14 @@ export default function Projects() {
               width: "44px",
               height: "44px",
               borderRadius: "8px",
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.08)",
+              background: "rgba(var(--text-rgb), 0.05)",
+              border: "1px solid rgba(var(--text-rgb), 0.08)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               fontWeight: 700,
               fontSize: "15px",
-              color: "#f0ede8",
+              color: "var(--text-primary)",
               flexShrink: 0,
             }}>
               {p.letter}
@@ -311,7 +311,7 @@ export default function Projects() {
                 <span style={{
                   fontSize: "0.95rem",
                   fontWeight: 600,
-                  color: "#f0ede8",
+                  color: "var(--text-primary)",
                 }}>
                   {p.name}
                 </span>
@@ -325,7 +325,7 @@ export default function Projects() {
                         padding: "2px 8px",
                         border: "1px solid rgba(200,245,66,0.4)",
                         borderRadius: "4px",
-                        color: "#c8f542",
+                        color: "var(--accent-color)",
                         textDecoration: "none",
                         fontFamily: "monospace",
                         background: "rgba(200,245,66,0.06)",
@@ -341,12 +341,12 @@ export default function Projects() {
                       style={{
                         fontSize: "9px",
                         padding: "2px 8px",
-                        border: "1px solid rgba(255,255,255,0.12)",
+                        border: "1px solid rgba(var(--text-rgb), 0.12)",
                         borderRadius: "4px",
-                        color: "rgba(255,255,255,0.55)",
+                        color: "rgba(var(--text-rgb), 0.55)",
                         textDecoration: "none",
                         fontFamily: "monospace",
-                        background: "rgba(255,255,255,0.03)",
+                        background: "rgba(var(--text-rgb), 0.03)",
                         whiteSpace: "nowrap",
                         position: "relative",
                         zIndex: 10,
@@ -361,7 +361,7 @@ export default function Projects() {
               <p style={{
                 margin: 0,
                 fontSize: "12px",
-                color: "rgba(255,255,255,0.38)",
+                color: "rgba(var(--text-rgb), 0.38)",
                 fontFamily: "monospace",
                 lineHeight: 1.6,
               }}>
@@ -379,11 +379,11 @@ export default function Projects() {
                   <span key={tag} style={{
                     fontSize: "9px",
                     padding: "2px 7px",
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    border: "1px solid rgba(var(--text-rgb), 0.08)",
                     borderRadius: "3px",
-                    color: "rgba(255,255,255,0.3)",
+                    color: "rgba(var(--text-rgb), 0.3)",
                     fontFamily: "monospace",
-                    background: "rgba(255,255,255,0.02)",
+                    background: "rgba(var(--text-rgb), 0.02)",
                   }}>
                     {tag}
                   </span>
@@ -402,12 +402,12 @@ export default function Projects() {
                 <span key={tag} style={{
                   fontSize: "10px",
                   padding: "3px 10px",
-                  border: "1px solid rgba(255,255,255,0.08)",
+                  border: "1px solid rgba(var(--text-rgb), 0.08)",
                   borderRadius: "4px",
-                  color: "rgba(255,255,255,0.35)",
+                  color: "rgba(var(--text-rgb), 0.35)",
                   fontFamily: "monospace",
                   whiteSpace: "nowrap",
-                  background: "rgba(255,255,255,0.02)",
+                  background: "rgba(var(--text-rgb), 0.02)",
                 }}>
                   {tag}
                 </span>
@@ -434,8 +434,8 @@ export default function Projects() {
         >
           {hovered !== null && (
             <div style={{
-              background: "#0f0f0f",
-              border: "1px solid rgba(255,255,255,0.14)",
+              background: "var(--bg-dark)",
+              border: "1px solid rgba(var(--text-rgb), 0.14)",
               borderRadius: "10px",
               overflow: "hidden",
               boxShadow: "0 24px 48px rgba(0,0,0,0.7)",
@@ -454,7 +454,7 @@ export default function Projects() {
                 <span style={{
                   fontWeight: 700,
                   fontSize: "14px",
-                  color: "#f0ede8",
+                  color: "var(--text-primary)",
                   display: "block",
                   marginBottom: "0.4rem",
                 }}>
@@ -463,7 +463,7 @@ export default function Projects() {
                 <p style={{
                   margin: "0 0 0.65rem",
                   fontSize: "11px",
-                  color: "rgba(255,255,255,0.5)",
+                  color: "rgba(var(--text-rgb), 0.5)",
                   fontFamily: "monospace",
                   lineHeight: 1.55,
                 }}>
@@ -474,9 +474,9 @@ export default function Projects() {
                     <span key={tag} style={{
                       fontSize: "10px",
                       padding: "2px 8px",
-                      border: "1px solid rgba(255,255,255,0.1)",
+                      border: "1px solid rgba(var(--text-rgb), 0.1)",
                       borderRadius: "3px",
-                      color: "rgba(255,255,255,0.4)",
+                      color: "rgba(var(--text-rgb), 0.4)",
                       fontFamily: "monospace",
                     }}>
                       {tag}
