@@ -3,11 +3,14 @@ import { FiArrowDownLeft } from "react-icons/fi";
 
 const Contact = () => {
   return (
-    <section style={{
-      background: "#000",
-      borderTop: "1px solid rgba(255,255,255,0.06)",
-      padding: "8rem 6vw 5rem",
-    }}>
+    <section 
+      id="contact"
+      style={{
+        background: "var(--bg-dark)",
+        borderTop: "1px solid rgba(var(--text-rgb), 0.06)",
+        padding: "8rem 6vw 5rem",
+      }}
+    >
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
         {/* Top row */}
@@ -22,7 +25,7 @@ const Contact = () => {
               fontFamily: "monospace",
               fontSize: "11px",
               letterSpacing: "0.2em",
-              color: "#c8f542",
+              color: "var(--accent-color)",
               textTransform: "uppercase",
               margin: "0 0 1.25rem 0",
             }}>
@@ -32,7 +35,7 @@ const Contact = () => {
               fontFamily: "serif",
               fontSize: "clamp(32px, 4.5vw, 60px)",
               fontWeight: 700,
-              color: "#f0ede8",
+              color: "var(--text-primary)",
               lineHeight: 1.1,
               margin: "0 0 1rem 0",
             }}>
@@ -41,7 +44,7 @@ const Contact = () => {
             <p style={{
               fontFamily: "monospace",
               fontSize: "13px",
-              color: "rgba(255,255,255,0.4)",
+              color: "rgba(var(--text-rgb), 0.4)",
               margin: 0,
             }}>
               I am available. Let's work together.
@@ -50,14 +53,14 @@ const Contact = () => {
 
           <FiArrowDownLeft style={{
             fontSize: "clamp(48px, 6vw, 80px)",
-            color: "rgba(255,255,255,0.15)",
+            color: "rgba(var(--text-rgb), 0.15)",
             flexShrink: 0,
             marginTop: "0.5rem",
           }} />
         </div>
 
         {/* Divider */}
-        <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", marginBottom: "3rem" }} />
+        <div style={{ borderTop: "1px solid rgba(var(--text-rgb), 0.06)", marginBottom: "3rem" }} />
 
         {/* Email + socials */}
         <div style={{
@@ -72,14 +75,14 @@ const Contact = () => {
             style={{
               fontFamily: "monospace",
               fontSize: "clamp(22px, 4vw, 52px)",
-              color: "rgba(255,255,255,0.55)",
+              color: "rgba(var(--text-rgb), 0.55)",
               textDecoration: "none",
               letterSpacing: "-0.02em",
               lineHeight: 1,
               transition: "color 0.2s",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = "#f0ede8"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.55)"; }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-primary)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(var(--text-rgb), 0.55)"; }}
           >
             divinenation1@gmail.com
           </a>
@@ -100,12 +103,12 @@ const Contact = () => {
                   fontSize: "10px",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.4)",
+                  color: "rgba(var(--text-rgb), 0.4)",
                   textDecoration: "none",
                   transition: "color 0.2s",
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = "#c8f542"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.4)"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = "var(--accent-color)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(var(--text-rgb), 0.4)"; }}
               >
                 {label}
               </a>
@@ -116,7 +119,7 @@ const Contact = () => {
         {/* Copyright */}
         <div style={{
           marginTop: "5rem",
-          borderTop: "1px solid rgba(255,255,255,0.06)",
+          borderTop: "1px solid rgba(var(--text-rgb), 0.06)",
           paddingTop: "1.5rem",
           display: "flex",
           justifyContent: "space-between",
@@ -127,7 +130,7 @@ const Contact = () => {
             fontSize: "10px",
             letterSpacing: "0.15em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,0.25)",
+            color: "rgba(var(--text-rgb), 0.25)",
             margin: 0,
           }}>
             © {new Date().getFullYear()} Divine Dilibe. All rights reserved.
@@ -137,7 +140,7 @@ const Contact = () => {
             fontSize: "10px",
             letterSpacing: "0.15em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,0.15)",
+            color: "rgba(var(--text-rgb), 0.15)",
             margin: 0,
           }}>
             Based in Lagos, Nigeria
