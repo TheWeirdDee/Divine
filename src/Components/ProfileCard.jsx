@@ -8,39 +8,74 @@ gsap.registerPlugin(ScrollTrigger);
 export default function ProfileCard() {
   const containerRef = useRef(null);
   const imageContainerRef = useRef(null);
+  const headingRef = useRef(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(".reveal-text", 
-        { y: 30, opacity: 0 },
+
+      // Heading reveal — clip path wipe (shimmer-text must stay whole, no SplitType)
+      gsap.fromTo(headingRef.current,
+        { clipPath: "inset(0 100% 0 0)", opacity: 0 },
         {
-          y: 0,
+          clipPath: "inset(0 0% 0 0)",
           opacity: 1,
-          stagger: 0.1,
-          duration: 1,
-          ease: "power3.out",
+          duration: 1.1,
+          ease: "power4.out",
           scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 70%",
+            trigger: headingRef.current,
+            start: "top 85%",
           },
         }
       );
 
-      gsap.fromTo(imageContainerRef.current,
-        { scale: 1.1, filter: "grayscale(100%)" },
+      // Fade up blocks
+      gsap.fromTo(".reveal-block",
+        { y: 40, opacity: 0 },
         {
-          scale: 1,
-          filter: "grayscale(0%)",
+          y: 0,
+          opacity: 1,
+          stagger: 0.12,
+          duration: 0.9,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 80%",
-            end: "bottom center",
-            scrub: 0.5,
-          }
+            start: "top 75%",
+          },
         }
       );
+
+      // Image reveal
+      gsap.fromTo(imageContainerRef.current,
+        { clipPath: "inset(100% 0% 0% 0%)", opacity: 0 },
+        {
+          clipPath: "inset(0% 0% 0% 0%)",
+          opacity: 1,
+          duration: 1.2,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: imageContainerRef.current,
+            start: "top 80%",
+          },
+        }
+      );
+
+      // Image grayscale scrub
+      gsap.fromTo(".inner-img",
+        { filter: "grayscale(100%) brightness(0.7)", scale: 1.08 },
+        {
+          filter: "grayscale(0%) brightness(1)",
+          scale: 1,
+          scrollTrigger: {
+            trigger: imageContainerRef.current,
+            start: "top 80%",
+            end: "bottom 30%",
+            scrub: 0.8,
+          },
+        }
+      );
+
     }, containerRef);
 
     return () => ctx.revert();
@@ -49,58 +84,201 @@ export default function ProfileCard() {
   return (
     <section
       ref={containerRef}
-      style={{ paddingLeft: '6vw', paddingRight: '6vw' }}
-      className="relative py-32 md:py-48 bg-[#0a0a0a] border-t border-white/5"
+      id="about"
+      style={{
+        background: "var(--bg-dark)",
+        borderTop: "1px solid rgba(var(--text-rgb), 0.05)",
+        padding: "3rem 6vw",
+      }}
     >
-      <div className="max-w-[1700px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 items-center">
-        <div className="space-y-10 md:space-y-16">
-          <div>
-            <span className="section-label mb-8 block reveal-text">Who I am</span>
-            <h2 className="reveal-text text-5xl md:text-7xl font-bold mb-8 tracking-tighter leading-none">
+      <div style={{
+        maxWidth: "1200px",
+        margin: "0 auto",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "6rem",
+        alignItems: "center",
+      }}
+        className="about-grid"
+      >
+
+        <div>
+
+          <p
+            className="reveal-block"
+            style={{
+              fontFamily: "monospace",
+              fontSize: "11px",
+              letterSpacing: "0.2em",
+              color: "var(--accent-color)",
+              textTransform: "uppercase",
+              margin: "0 0 2rem 0",
+            }}
+          >
+            Who I Am
+          </p>
+
+          
+          <div style={{ overflow: "hidden", marginBottom: "1.5rem" }}>
+            <h2
+              ref={headingRef}
+              className="shimmer-text"
+              style={{
+                fontFamily: "serif",
+                fontSize: "clamp(40px, 6vw, 80px)",
+                fontWeight: 700,
+                lineHeight: 1.0,
+                margin: 0,
+                letterSpacing: "-0.02em",
+              }}
+            >
               Divine Dilibe
             </h2>
-            <p className="reveal-text font-mono text-xs tracking-[0.4em] uppercase text-[#c8f542]">
-              Frontend Developer • Web3 Enthusiast
-            </p>
           </div>
 
-          <div className="space-y-6 md:space-y-10">
-          
-            <p className="reveal-text text-base md:text-lg text-white/60 leading-relaxed max-w-xl">
-              I enjoy building clean, reusable components and making sure apps
-              look great and work well on any device. Collaboration is a big
-              part of how I work — I like solving problems with teammates and
-              shipping products that feel intuitive and reliable.
-            </p>
-          </div>
+          {/* Role */}
+          <p
+            className="reveal-block"
+            style={{
+              fontFamily: "monospace",
+              fontSize: "11px",
+              letterSpacing: "0.25em",
+              color: "rgba(200,245,66,0.6)",
+              textTransform: "uppercase",
+              margin: "0 0 3.5rem 0",
+            }}
+          >
+            Frontend Developer • Web3 Enthusiast
+          </p>
 
-          <div className="reveal-text pt-6">
-            <a
-              href="mailto:divinenation1@gmail.com"
-              className="inline-flex items-center gap-6 group"
+          {/* Divider */}
+          <div
+            className="reveal-block"
+            style={{
+              borderTop: "1px solid rgba(var(--text-rgb), 0.06)",
+              marginBottom: "1rem",
+            }}
+          />
+
+          {/* Bio */}
+          <p
+            className="reveal-block"
+            style={{
+              fontFamily: "monospace",
+              fontSize: "14px",
+              color: "rgba(var(--text-rgb), 0.5)",
+              lineHeight: 1.8,
+              margin: "0 0 3rem 0",
+              maxWidth: "48ch",
+            }}
+          >
+            I enjoy building clean, reusable components and making sure apps
+            look great on any device. Collaboration is core to how I work —
+            I like solving problems with teammates and shipping products that
+            feel intuitive and reliable.
+          </p>
+
+          {/* CTA */}
+          <a
+            className="reveal-block"
+            href="mailto:divinenation1@gmail.com"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "1rem",
+              textDecoration: "none",
+              cursor: "pointer",
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.querySelector(".cta-circle").style.background = "var(--accent-color)"
+              e.currentTarget.querySelector(".cta-circle").style.borderColor = "var(--accent-color)"
+              e.currentTarget.querySelector(".cta-arrow").style.color = "var(--bg-dark)"
+              e.currentTarget.querySelector(".cta-label").style.color = "var(--accent-color)"
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.querySelector(".cta-circle").style.background = "transparent"
+              e.currentTarget.querySelector(".cta-circle").style.borderColor = "rgba(var(--text-rgb), 0.2)"
+              e.currentTarget.querySelector(".cta-arrow").style.color = "var(--bg-dark)"
+              e.currentTarget.querySelector(".cta-label").style.color = "rgba(var(--text-rgb), 0.5)"
+            }}
+          >
+            <span
+              className="cta-circle"
+              style={{
+                width: "52px",
+                height: "52px",
+                borderRadius: "50%",
+                border: "1px solid rgba(var(--text-rgb), 0.2)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "all 0.3s",
+                flexShrink: 0,
+              }}
             >
-              <span className="w-14 h-14 md:w-16 md:h-16 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#c8f542] group-hover:bg-[#c8f542] transition-all duration-300">
-                <span className="text-white group-hover:text-black transition-colors text-xl">→</span>
+              <span
+                className="cta-arrow"
+                style={{ color: "var(--text-primary)", fontSize: "18px", transition: "color 0.3s" }}
+              >
+                →
               </span>
-              <span className="font-mono text-[11px] uppercase tracking-[0.2em] group-hover:text-[#c8f542] transition-colors">Start a conversation</span>
-            </a>
-          </div>
+            </span>
+            <span
+              className="cta-label"
+              style={{
+                fontFamily: "monospace",
+                fontSize: "10px",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "rgba(var(--text-rgb), 0.5)",
+                transition: "color 0.3s",
+              }}
+            >
+              Start a conversation
+            </span>
+          </a>
         </div>
 
-        <div className="relative w-full max-w-[450px] mx-auto md:ml-auto md:mr-0">
-          <div 
+        {/* RIGHT — image */}
+        <div style={{ position: "relative" }}>
+          <div
             ref={imageContainerRef}
-            className="aspect-[4/5] border border-white/10 overflow-hidden relative group"
+            style={{
+              aspectRatio: "4/5",
+              overflow: "hidden",
+              border: "1px solid rgba(var(--text-rgb), 0.08)",
+              position: "relative",
+            }}
           >
             <img
               src={Divine}
-              alt="Divine"
-              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              alt="Divine Dilibe"
+              className="inner-img"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+                transformOrigin: "center center",
+              }}
             />
           </div>
-          {/* Accent Border */}
-          <div className="absolute -top-4 -right-4 w-32 h-32 border-t-2 border-r-2 border-[#c8f542] pointer-events-none" />
+
+          {/* Accent corner */}
+          <div style={{
+            position: "absolute",
+            top: "-16px",
+            right: "-16px",
+            width: "80px",
+            height: "80px",
+            borderTop: "2px solid var(--accent-color)",
+            borderRight: "2px solid var(--accent-color)",
+            pointerEvents: "none",
+          }} />
+
+           
         </div>
+
       </div>
     </section>
   );
