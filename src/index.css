@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Syncopate:wght@400;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -22,15 +22,21 @@
 
 :root {
   --bg-dark: #0a0a0a;
+  --bg-rgb: 10, 10, 10;
   --text-primary: #f0ede8;
+  --text-rgb: 240, 237, 232;
   --accent-color: #c8f542;
   --font-serif: 'Playfair Display', serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --font-syncopate: 'Syncopate', sans-serif;
 }
 
 body.light-mode {
   --bg-dark: #f0ede8;
+  --bg-rgb: 240, 237, 232;
   --text-primary: #0a0a0a;
+  --text-rgb: 10, 10, 10;
+  --accent-color: #3d6b00;
 }
 
 
@@ -59,6 +65,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   font-weight: 700;
+  color: var(--text-primary);
 }
 
 /* Custom Selection */
@@ -71,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
 p {
   font-size: 15px;
   line-height: 1.7;
-  color: rgba(240, 237, 232, 0.6);
+  color: rgba(var(--text-rgb), 0.6);
 }
 
 /* Section Label Utility */
@@ -95,6 +102,27 @@ p {
 /* GSAP Specific */
 .clip-reveal {
   clip-path: inset(0 100% 0 0);
+}
+
+/* Shimmer text animation */
+@keyframes shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    rgba(var(--text-rgb), 0.1) 0%,
+    var(--text-primary)          50%,
+    rgba(var(--text-rgb), 0.1) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent !important;
+  animation: shimmer 3s linear infinite;
+  transition: background 0.4s ease-out;
 }
 
 /* Marquee Styles */
@@ -150,6 +178,15 @@ p {
   }
 
   .tech-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 0 !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  /* About Grid Layout */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
   }
 }
