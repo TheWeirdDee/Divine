@@ -1,28 +1,155 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import "tailwindcss";
 
-html,
+@theme {
+  --color-accent-lime: #c8f542;
+  --color-bg-black: #0a0a0a;
+  --color-text-off-white: #f0ede8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none !important; /* Hide default cursor for custom cursor */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+:root {
+  --bg-dark: #0a0a0a;
+  --text-primary: #f0ede8;
+  --accent-color: #c8f542;
+  --font-serif: 'Playfair Display', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body.light-mode {
+  --bg-dark: #f0ede8;
+  --text-primary: #0a0a0a;
+}
+
+
+html {
+  overflow-y: scroll;
+  background-color: var(--bg-dark);
+  transition: background-color 0.4s ease-out;
+}
+
 body {
-  font-family: "Outfit", sans-serif;
-  background: black;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  transition: background-color 0.4s ease-out, color 0.4s ease-out;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Playfair Display", serif;
+/* Ensure root doesn't create his own scrollbar */
+#root {
+  width: 100%;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+/* Custom Selection */
+::selection {
+  background-color: var(--accent-color);
+  color: var(--bg-dark);
+}
+
+/* Base Body Text */
+p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(240, 237, 232, 0.6);
+}
+
+/* Section Label Utility */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent-color);
+}
+
+/* Hide scrollbar but allow scrolling */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 .no-scrollbar {
-  overflow-x: auto;
-  scrollbar-gutter: stable overlay;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* GSAP Specific */
+.clip-reveal {
+  clip-path: inset(0 100% 0 0);
+}
+
+/* Marquee Styles */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+}
+
+.marquee-item {
+  display: inline-block;
+  padding-right: 2rem;
+}
+
+/* Desktop: hide mobile tags, show right column tags */
+.mobile-tags { display: none !important; }
+.project-tags { display: flex !important; }
+
+/* Mobile: show mobile tags, hide right column */
+@media (max-width: 768px) {
+  .mobile-tags { display: flex !important; }
+  .project-tags { display: none !important; }
+  
+  .project-row {
+    grid-template-columns: 44px 1fr !important;
+    padding: 1.5rem 0.5rem !important;
+    gap: 1rem !important;
+  }
+
+  .project-row p {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+  }
+
+  .project-row span[style] {
+    font-size: 14px !important;
+  }
+
+  .project-row .name-row {
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+  }
+
+  /* Tech Stack Mobile Layout */
+  .tech-section {
+    padding: 4rem 5vw !important;
+  }
+
+  .tech-layout {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
 }
