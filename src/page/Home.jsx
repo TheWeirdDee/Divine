@@ -1,88 +1,97 @@
  
 import React, { useState, useEffect, useRef } from "react";
-import { FaGithub, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
-import { HiMenu, HiX } from "react-icons/hi";
-import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
+import CustomCursor from "../Components/CustomCursor";
+import Marquee from "../Components/Marquee";
 import Projects from "../Components/Projects";
 import ProfileCard from "../Components/ProfileCard";
 import Contact from "../Components/Contact";
 import TechStack from "../Components/TechStack";
 import MyAni from "../assets/Images/MyAni.jpg";
 
+gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.normalizeScroll(true);
+
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isLight, setIsLight] = useState(false);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(".nav-item", 
+        { y: -20, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: "power3.out", delay: 0.5 }
+      );
+    }, navRef);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      ctx.revert();
+    };
+  }, []);
+
+  const toggleTheme = () => {
+    const nextState = !isLight;
+    setIsLight(nextState);
+    if (nextState) {
+      document.body.classList.add('light-mode');
+    } else {
+      document.body.classList.remove('light-mode');
+    }
+  };
 
   const navLinks = [
-    { name: "Projects", href: "#projects" },
-    { name: "Resume", href: "/Resume.pdf" },
+    { name: "Work", href: "#projects" },
     { name: "About", href: "#about" },
     { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <nav className="w-full md:relative fixed md:top-10 top-0 flex justify-center pt-10 pb-7 z-50 backdrop-blur-sm bg-black/30">
-      <div className="rounded-full border border-gray-700 px-5 py-4 flex items-center justify-between md:w-full md:max-w-2xl w-[380px] backdrop-blur-sm bg-black/30">
-        <div className="md:hidden">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-gray-300 hover:text-white"
-          >
-            {isOpen ? <HiX size={26} /> : <HiMenu size={26} />}
-          </button>
+    <nav 
+      ref={navRef}
+      style={{ paddingLeft: '6vw', paddingRight: '6vw' }}
+      className={`fixed top-0 left-0 w-full z-[100] transition-all duration-700 flex items-center ${
+        scrolled 
+          ? "h-16 bg-[var(--bg-dark)]/90 backdrop-blur-md border-b border-[var(--text-primary)]/10" 
+          : "h-16 md:h-20 bg-transparent"
+      }`}
+    >
+      <div className="max-w-[1700px] mx-auto w-full flex justify-between items-center relative">
+        {/* Logo */}
+        <div className="nav-item font-mono text-xs md:text-sm tracking-tighter uppercase font-bold text-[var(--text-primary)]">
+          Divine.Dev
         </div>
-
-        {/* Desktop */}
-        <div className="hidden md:flex items-center gap-6">
+        
+        {/* Links - Visible on mobile with small font */}
+        <div className="flex gap-8 md:gap-20 items-center">
           {navLinks.map((link, i) => (
-            <React.Fragment key={i}>
-              <a
-                href={link.href}
-                className="text-gray-300 hover:text-white font-medium"
-              >
-                {link.name}
-              </a>
-              {i < navLinks.length - 1 && (
-                <span className="text-gray-600">|</span>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-
-        <a href="mailto:divinenation1@gmail.com">
-          <button className="bg-white/70 text-black px-4 py-3 rounded-2xl font-semibold shadow-[0_8px_30px_rgba(34,197,94,0.18)] text-base md:text-sm transition-transform duration-200 hover:bg-purple-600 hover:scale-105 active:scale-95">
-            Let&apos;s Connect 💻
-          </button>
-        </a>
-      </div>
-
-      {/* Mobile Menu */}
-      <div
-        className={`md:hidden fixed top-[99px] mt-10 left-1/2 transform -translate-x-1/2 w-full bg-black shadow-md overflow-hidden transition-all duration-500 ease-in-out z-40 ${
-          isOpen ? "max-h-[500px]" : "max-h-0"
-        }`}
-      >
-        <div className="grid-cols-1 gap-x-4 gap-y-3 px-4 py-4">
-          {navLinks.map((item, index) => (
             <a
-              key={item.name}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className={`flex items-center text-left px-4 py-3 text-lg font-medium rounded-lg ${
-                index === 0 ? "mt-2 pt-4" : ""
-              } ${
-                window.location.hash === item.href
-                  ? "bg-[hsla(214,11%,13%,1)] text-white"
-                  : "text-[hsla(212,87%,97%,0.71)] hover:text-gray-300"
-              }`}
+              key={i}
+              href={link.href}
+              className="nav-item font-mono text-[10px] md:text-[12px] uppercase tracking-widest text-[var(--text-primary)] opacity-40 hover:opacity-100 transition-opacity"
             >
-              {item.name}
+              {link.name}
             </a>
           ))}
+          
+          <button 
+            onClick={toggleTheme}
+            className="nav-item p-3 md:p-4 rounded-full border border-[var(--text-primary)]/10 hover:border-[#c8f542] transition-all bg-[var(--text-primary)]/5 flex items-center justify-center cursor-pointer"
+            aria-label="Toggle Theme"
+          >
+            {isLight ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            )}
+          </button>
         </div>
       </div>
     </nav>
@@ -90,194 +99,151 @@ function Navbar() {
 }
 
 function Hero() {
-  const texts = ["I am Divine Dilibe", "I am a Frontend Developer"];
-  const [text, setText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loop, setLoop] = useState(0);
-  const [speed, setSpeed] = useState(150);
+  const headlineRef = useRef(null);
+  const subheadlineRef = useRef(null);
+  const subRef = useRef(null);
+  const marqueeContainerRef = useRef(null);
 
-
-
-  
   useEffect(() => {
-    const handleTyping = () => {
-      const current = texts[loop % texts.length];
-      const updatedText = isDeleting
-        ? current.substring(0, text.length - 1)
-        : current.substring(0, text.length + 1);
+    // 1. Initial Headline land animation (words pop up)
+    const text = "Hello there,";
+    const words = text.split(" ");
+    headlineRef.current.innerHTML = words.map(w => `<span class="inline-block overflow-hidden"><span class="inline-block">${w}</span></span>`).join(" ");
+    const wordSpans = headlineRef.current.querySelectorAll("span > span");
 
-      setText(updatedText);
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline();
+      tl.fromTo(wordSpans, 
+        { y: 60, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: "power3.out" }
+      );
+      tl.fromTo(subRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6 },
+        "-=0.4"
+      );
+    });
 
-      if (!isDeleting && updatedText === current) {
-        setTimeout(() => setIsDeleting(true), 1000);
-      } else if (isDeleting && updatedText === "") {
-        setIsDeleting(false);
-        setLoop(loop + 1);
+    // 2. Continuous Typewriter Effect
+    const phrases = ["I am a Frontend Developer", "my name is Divine Dilibe"];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100;
+
+    const type = () => {
+      const currentPhrase = phrases[phraseIndex];
+      if (isDeleting) {
+        charIndex--;
+        typeSpeed /= 2;
+      } else {
+        charIndex++;
+        typeSpeed = 100;
       }
 
-      setSpeed(isDeleting ? 100 : 150);
+      if (subheadlineRef.current) {
+        subheadlineRef.current.textContent = currentPhrase.substring(0, charIndex);
+      }
+
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        typeSpeed = 2000; // Pause at end
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        typeSpeed = 500;
+      }
+
+      setTimeout(type, typeSpeed);
     };
 
-    const timer = setTimeout(handleTyping, speed);
-    return () => clearTimeout(timer);
-  }, [text, isDeleting, loop, speed]);
+    type();
 
- 
-
-
-  return (
-    <header className="md:top-10 top-40 flex flex-col items-center justify-center text-center relative overflow-hidden px-6">
-      <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-80 h-36 rounded-full blur-3xl bg-gradient-to-t from-green-800/20 to-transparent pointer-events-none" />
-
-      <div className="max-w-5xl mx-auto">
-   
-        <motion.div
-          initial={{ opacity: 0, y: -80 }}
-          animate={{ opacity: 1, y: [0, -20, 0] }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            repeatType: "loop",
-            ease: "linear",
-          }}
-          className="mx-auto mb-6 w-26 h-26 rounded-xl bg-green-50 grid place-items-center shadow-sm overflow-hidden"
-        >
-          <img src={MyAni} alt="Profile Avatar" className="object-cover" />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: -120 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
-          <h2 className="mb-16 text-[64px] md:text-[96px] lg:text-[75px] font-extrabold text-gray-700 opacity-40 leading-[0.85] tracking-tight">
-            Hello there,
-          </h2>
-
-          <h1 className="-mt-6 md:-mt-10 text-[44px] md:text-[56px] lg:text-[75px] font-extrabold text-white leading-[1.02] tracking-tight min-h-[100px]">
-            {text}
-            <span className="animate-pulse">|</span>
-          </h1>
-        </motion.div>
-
-        
-
-      </div>
-    </header>
-  );
-}
-
-const MovingText = () => {
-  return (
-    <div className="relative w-full md:mt-16 mt-36 h-[200px] md:h-[200px] flex items-center justify-center overflow-hidden bg-transparent md:my-16">
-      
-      {/* Behind */}
-      <div className="absolute w-[150%] md:w-[125%] h-10 bg-[#111] transform -rotate-[10deg] md:-rotate-[7deg] flex items-center shadow-lg border-y border-black z-0">
-        <motion.div
-          animate={{ x: ["-50%", "0%"] }}
-          transition={{ ease: "linear", duration: 35, repeat: Infinity }}
-          className="flex whitespace-nowrap w-max text-gray-300"
-        >
-          <div className="flex w-max">
-            {[...Array(15)].map((_, i) => (
-              <span key={`a-${i}`} className="mx-8 md:mx-16 text-lg md:text-xl font-medium tracking-widest">
-                Currently open to new roles
-              </span>
-            ))}
-          </div>
-          <div className="flex w-max">
-            {[...Array(15)].map((_, i) => (
-              <span key={`b-${i}`} className="mx-8 md:mx-16 text-lg md:text-xl font-medium tracking-widest">
-                Currently open to new roles
-              </span>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-
-      
-      <div className="absolute w-[150%] md:w-[125%] h-10 bg-[#e5e5e5] transform rotate-[10deg] md:rotate-[7deg] flex items-center shadow-xl z-10">
-        <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ ease: "linear", duration: 35, repeat: Infinity }}
-          className="flex whitespace-nowrap w-max text-[#111]"
-        >
-          <div className="flex w-max">
-            {[...Array(15)].map((_, i) => (
-              <span key={`a-${i}`} className="mx-8 md:mx-16 text-lg md:text-xl font-medium tracking-widest">
-                Got a project? Let&apos;s hear it!
-              </span>
-            ))}
-          </div>
-          <div className="flex w-max">
-            {[...Array(15)].map((_, i) => (
-              <span key={`b-${i}`} className="mx-8 md:mx-16 text-lg md:text-xl font-medium tracking-widest">
-                Got a project? Let&apos;s hear it!
-              </span>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-
-    </div>
-  );
-};
-
-export default function Portfolio() {
-  const paragraphRef = useRef(null);
-
-  useEffect(() => {
-    if (!paragraphRef.current) return;
-
-    gsap.set(paragraphRef.current, {
-      opacity: 0,
-      y: 80,
-    });
-
-    gsap.to(paragraphRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 2,
-      ease: "power4.out",
-      scrollTrigger: {
-        trigger: paragraphRef.current,
-        start: "top 85%",
-        toggleActions: "play none none none",
-      },
-    });
+    return () => ctx.revert();
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
-      <Navbar />
-      <Hero />
-      <MovingText />
-
-      <div className="max-w-5xl mx-auto px-6 mb-12">
-        <p
-          ref={paragraphRef}
-          className="text-gray-300 max-w-2xl mx-auto leading-relaxed text-left md:text-center text-lg italic"
+    <>
+      <header 
+        style={{ paddingTop: '180px', paddingBottom: '60px' }}
+        className="w-full relative overflow-hidden bg-[var(--bg-dark)]"
+      >
+        <div 
+          style={{ paddingLeft: '6vw', paddingRight: '6vw' }}
+          className="max-w-[1700px] mx-auto w-full grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-16 md:gap-24 items-center"
         >
-          I am a Front-End Developer with hands-on experience building modern,
-          user-friendly web applications. I focus on crafting fast, accessible,
-          and engaging digital experiences. My goal is to keep growing as a
-          developer while delivering innovative, user-focused solutions.
-        </p>
+          
+          <div className="order-first md:order-last relative group mx-auto md:mx-0 w-full max-w-[260px] md:max-w-xs flex flex-col gap-6">
+            <div className="flex items-center gap-3 px-4 py-2 border border-[var(--text-primary)]/10 rounded-full self-start bg-[var(--bg-dark)]/50 backdrop-blur-sm">
+              <span className="w-2 h-2 bg-[#c8f542] rounded-full animate-pulse" />
+              <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--text-primary)]">Open to work</span>
+            </div>
+            
+            <div className="aspect-square md:aspect-[4/3] border border-[var(--text-primary)]/5 overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl">
+              <img src={MyAni} alt="Profile" className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000" />
+            </div>
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 border-r border-b border-[#c8f542]/30" />
+          </div>
+ 
+          <div className="order-last md:order-first z-10 transition-all">
+            <h1 
+              ref={headlineRef}
+              className="text-[clamp(36px,6vw,80px)] leading-[1.05] tracking-tighter mb-4"
+            >
+              Hello there,
+            </h1>
+            <div className="text-[clamp(1.8rem,5vw,5rem)] leading-[1.1] mb-12 tracking-tighter text-[var(--text-primary)] min-h-[2.2em] md:min-h-0">
+               <span ref={subheadlineRef}></span>
+               <span className="inline-block w-[2px] md:w-[3px] h-[0.7em] bg-[#c8f542] ml-2 md:ml-4 animate-pulse align-middle" />
+            </div>
+            
+            <div ref={subRef} className="max-w-xl">
+              <p className="text-sm md:text-lg mb-12 text-[var(--text-primary)] opacity-50 leading-relaxed font-mono tracking-tight">
+                I focus on building modern, fast, accessible, user-friendly and engaging digital experiences using modern web standards and precise motion design.
+              </p>
+              <div className="flex gap-8">
+                <a href="#projects" className="group flex items-center gap-6">
+                  <span className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[var(--text-primary)]/10 flex items-center justify-center group-hover:border-[#c8f542] group-hover:bg-[#c8f542] transition-all duration-500">
+                    <span className="text-[var(--text-primary)] group-hover:text-black transition-colors">↓</span>
+                  </span>
+                  <span className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.2em] opacity-80">Selected Works</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+     
+      <div className="w-full pt-4 md:pt-6 pb-16 md:pb-24">
+        <Marquee />
       </div>
+    </>
+  );
+}
 
-      <section id="projects" className="md:pt-16 pt-10">
+export default function Portfolio() {
+  return (
+    <div className="bg-[var(--bg-dark)] text-[var(--text-primary)] selection:bg-[#c8f542] selection:text-black">
+      <CustomCursor />
+      <Navbar />
+      
+      <main>
+        <Hero />
+
+        
         <Projects />
-      </section>
+        <TechStack />
+        
+        <section id="about">
+           <ProfileCard />
+        </section>
 
-
-      <section id="about" className="py-5">
-        <ProfileCard />
-      </section>
-
-      <TechStack />
-      <section id="contact">
-        <Contact />
-      </section>
+        <section id="contact">
+          <Contact />
+        </section>
+      </main>
+ 
     </div>
   );
 }
