@@ -15,12 +15,32 @@ ScrollTrigger.normalizeScroll(true);
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [isLight, setIsLight] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const [isLight, setIsLight] = useState(() => localStorage.getItem('theme') === 'light');
   const navRef = useRef(null);
 
   useEffect(() => {
+    // Apply saved theme on mount
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light-mode');
+    } else {
+      document.body.classList.remove('light-mode');
+    }
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      // ScrollSpy logic
+      const sections = ["work", "about", "contact"];
+      const current = sections.find(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (current) setActiveSection(current);
     };
     window.addEventListener("scroll", handleScroll);
 
@@ -42,16 +62,40 @@ function Navbar() {
     setIsLight(nextState);
     if (nextState) {
       document.body.classList.add('light-mode');
+      localStorage.setItem('theme', 'light');
     } else {
       document.body.classList.remove('light-mode');
+      localStorage.setItem('theme', 'dark');
     }
   };
 
   const navLinks = [
-    { name: "Work", href: "#projects" },
+    { name: "Work", href: "#work" },
     { name: "About", href: "#about" },
     { name: "Contact", href: "#contact" },
   ];
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    const id = href.replace("#", "");
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80; // Adjust for sticky nav
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+
+      // Update URL without jump
+      window.history.pushState(null, null, href);
+      setActiveSection(id);
+    }
+  };
 
   return (
     <nav 
@@ -65,21 +109,51 @@ function Navbar() {
     >
       <div className="max-w-[1700px] mx-auto w-full flex justify-between items-center relative">
         {/* Logo */}
-        <div className="nav-item font-mono text-xs md:text-sm tracking-tighter uppercase font-bold text-[var(--text-primary)]">
+        <div 
+          className="nav-item shimmer-text"
+          style={{
+            fontFamily: "var(--font-syncopate)",
+            fontSize: "clamp(12px, 2vw, 16px)",
+            fontWeight: 700,
+            letterSpacing: "-0.05em",
+            textTransform: "uppercase",
+          }}
+        >
           Divine.Dev
         </div>
         
         {/* Links - Visible on mobile with small font */}
         <div className="flex gap-8 md:gap-20 items-center">
-          {navLinks.map((link, i) => (
-            <a
-              key={i}
-              href={link.href}
-              className="nav-item font-mono text-[10px] md:text-[12px] uppercase tracking-widest text-[var(--text-primary)] opacity-40 hover:opacity-100 transition-opacity"
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link, i) => {
+            const isActive = activeSection === link.href.replace("#", "");
+            return (
+              <a
+                key={i}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="nav-item font-mono text-[10px] md:text-[12px] uppercase tracking-widest transition-all relative"
+                style={{ 
+                  textDecoration: "none",
+                  color: "var(--text-primary)",
+                  opacity: isActive ? 1 : 0.4 
+                }}
+              >
+                {link.name}
+                {/* Underline for active section */}
+                <div 
+                  style={{
+                    position: "absolute",
+                    bottom: "-4px",
+                    left: 0,
+                    width: isActive ? "100%" : "0%",
+                    height: "1px",
+                    background: "var(--accent-color)",
+                    transition: "width 0.3s ease-out"
+                  }}
+                />
+              </a>
+            );
+          })}
           
           <button 
             onClick={toggleTheme}
@@ -165,7 +239,7 @@ function Hero() {
   return (
     <>
       <header 
-        style={{ paddingTop: '180px', paddingBottom: '60px' }}
+        style={{ paddingTop: 'clamp(130px, 15vh, 180px)', paddingBottom: '60px' }}
         className="w-full relative overflow-hidden bg-[var(--bg-dark)]"
       >
         <div 
@@ -173,8 +247,8 @@ function Hero() {
           className="max-w-[1700px] mx-auto w-full grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-16 md:gap-24 items-center"
         >
           
-          <div className="order-first md:order-last relative group mx-auto md:mx-0 w-full max-w-[260px] md:max-w-xs flex flex-col gap-6">
-            <div className="flex items-center gap-3 px-4 py-2 border border-[var(--text-primary)]/10 rounded-full self-start bg-[var(--bg-dark)]/50 backdrop-blur-sm">
+          <div className="order-first md:order-last relative group mx-auto md:mx-0 justify-self-center md:justify-self-auto w-full max-w-[260px] md:max-w-xs flex flex-col items-center md:items-start gap-6">
+            <div className="flex items-center gap-3 px-4 py-2 border border-[var(--text-primary)]/10 rounded-full bg-[var(--bg-dark)]/50 backdrop-blur-sm">
               <span className="w-2 h-2 bg-[#c8f542] rounded-full animate-pulse" />
               <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--text-primary)]">Open to work</span>
             </div>
@@ -197,12 +271,27 @@ function Hero() {
                <span className="inline-block w-[2px] md:w-[3px] h-[0.7em] bg-[#c8f542] ml-2 md:ml-4 animate-pulse align-middle" />
             </div>
             
-            <div ref={subRef} className="max-w-xl">
-              <p className="text-sm md:text-lg mb-12 text-[var(--text-primary)] opacity-50 leading-relaxed font-mono tracking-tight">
-                I focus on building modern, fast, accessible, user-friendly and engaging digital experiences using modern web standards and precise motion design.
+            <div ref={subRef} className="max-w-xl" style={{ marginTop: '2rem' }}>
+              <p 
+                style={{ 
+                  marginBottom: 0, 
+                  lineHeight: 1.6,
+                  color: "var(--bg-dark)",
+                }}
+                className="text-sm md:text-lg font-mono tracking-tight"
+              >
+                <span style={{ 
+                  background: "#c8f542", 
+                  padding: "0.2em 0.4em",
+                  boxShadow: "0.4em 0 0 #c8f542, -0.4em 0 0 #c8f542",
+                  boxDecorationBreak: "clone",
+                  WebkitBoxDecorationBreak: "clone",
+                }}>
+                  I focus on building modern, fast, accessible, user-friendly and engaging digital experiences using modern web standards and precise motion design.
+                </span>
               </p>
-              <div className="flex gap-8">
-                <a href="#projects" className="group flex items-center gap-6">
+              <div style={{ marginTop: '30px' }} className="flex gap-8">
+                <a href="#work" className="group flex items-center gap-6">
                   <span className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[var(--text-primary)]/10 flex items-center justify-center group-hover:border-[#c8f542] group-hover:bg-[#c8f542] transition-all duration-500">
                     <span className="text-[var(--text-primary)] group-hover:text-black transition-colors">↓</span>
                   </span>
