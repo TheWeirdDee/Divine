@@ -1,122 +1,233 @@
 /* eslint-disable no-unused-vars */
 import {
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiReact,
-  SiTypescript,
-  SiGithub,
-  SiTailwindcss,
-  SiBootstrap,
-  SiNodedotjs,
-  SiNextdotjs,
-  SiJira, 
-  SiGreensock,
-  SiShadcnui,
-  SiSolidity,
+  SiHtml5, SiCss3, SiJavascript, SiReact, SiTypescript,
+  SiTailwindcss, SiNodedotjs, SiNextdotjs, SiGreensock, SiFramer,
+  SiGithub, SiBootstrap, SiReactquery, SiJira, SiShadcnui, SiSolidity,
+  SiEthereum, SiPostman
 } from "react-icons/si";
-import { SiFramer, SiReactquery  } from "react-icons/si"; 
-import { useEffect } from "react";
-import { motion } from "framer-motion";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const techStack = [
+  { name: "HTML5", icon: SiHtml5 },
+  { name: "CSS3", icon: SiCss3 },
+  { name: "JavaScript", icon: SiJavascript },
+  { name: "React.js", icon: SiReact },
+  { name: "TypeScript", icon: SiTypescript },
+  { name: "Git & GitHub", icon: SiGithub },
+  { name: "Tailwind CSS", icon: SiTailwindcss },
+  { name: "Bootstrap", icon: SiBootstrap },
+  { name: "Node.js", icon: SiNodedotjs },
+  { name: "Next.js", icon: SiNextdotjs },
+  { name: "Framer Motion", icon: SiFramer },
+  { name: "React Query", icon: SiReactquery },
+  { name: "Jira", icon: SiJira },
+  { name: "shadcn/ui", icon: SiShadcnui },
+  { name: "GSAP", icon: SiGreensock },
+  { name: "Solidity", icon: SiSolidity },
+  { name: "Smart Contracts", icon: SiEthereum },
+  { name: "REST APIs", icon: SiPostman },
+];
+
+const softSkills = ["Collaboration", "Critical Thinking", "Problem Solving", "Adaptability"];
 
 export default function TechSection() {
+  const sectionRef = useRef(null);
+
   useEffect(() => {
-    AOS.init({ duration: 1200, once: true });
+    const ctx = gsap.context(() => {
+      gsap.fromTo(".tech-card",
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.04,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+          }
+        }
+      );
+    }, sectionRef);
+    return () => ctx.revert();
   }, []);
 
-  const techStack = [
-    { name: "HTML5", icon: SiHtml5, color: "#E34F26" },
-    { name: "CSS3", icon: SiCss3, color: "#1572B6" },
-    { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
-    { name: "React.js", icon: SiReact, color: "#61DAFB" },
-    { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
-    { name: "Git & GitHub", icon: SiGithub, color: "#181717" },
-    { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
-    { name: "Bootstrap", icon: SiBootstrap, color: "#7952B3" },
-    { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
-    { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
-    { name: "Framer Motion", icon: SiFramer, color: "#FF0050" },
-    { name: "React Query", icon: SiReactquery, color: "#FF4154" }, 
-    { name: "Jira", icon: SiJira, color: "#0052CC" },
-    { name: "shadcn/ui", icon: SiShadcnui, color: "#000000" },
-    { name: "GSAP", icon: SiGreensock, color: "#88CE02" }, 
-    { name: "Solidity", icon: SiSolidity, color: "#363636" },
-  ];
-
   return (
-    <div className="bg-black text-white px-6 py-12">
-      <div className="max-w-5xl mx-auto grid gap-12 md:grid-cols-2">
-        
-        
-        <motion.div
-          className="space-y-10"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <div data-aos="fade-right">
-            <h3 className="text-3xl tracking-wider font-semibold mb-3 bg-gradient-to-r from-purple-400 via-white to-yellow-500 bg-clip-text text-transparent opacity-50">
+    <section
+      ref={sectionRef}
+      className="tech-section"
+      style={{
+        background: "#000",
+        borderTop: "1px solid rgba(255,255,255,0.05)",
+        padding: "8rem 6vw",
+      }}
+    >
+      <div 
+        className="tech-layout"
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "1fr 1.6fr",
+          gap: "6rem",
+          alignItems: "start",
+      }}>
+
+        {/* LEFT COLUMN */}
+        <div>
+          {/* Section label */}
+          <p style={{
+            fontFamily: "monospace",
+            fontSize: "11px",
+            letterSpacing: "0.2em",
+            color: "#c8f542",
+            textTransform: "uppercase",
+            margin: "0 0 3rem 0",
+          }}>
+            Technical Proficiency
+          </p>
+
+          {/* Big headline */}
+          <h2 style={{
+            fontFamily: "serif",
+            fontSize: "clamp(36px, 5vw, 64px)",
+            fontWeight: 700,
+            color: "#f0ede8",
+            lineHeight: 1.05,
+            margin: "0 0 4rem 0",
+          }}>
+            My versatile toolkit for the modern web.
+          </h2>
+
+          {/* Education */}
+          <div style={{ marginBottom: "2.5rem" }}>
+            <p style={{
+              fontFamily: "monospace",
+              fontSize: "10px",
+              letterSpacing: "0.18em",
+              color: "rgba(200,245,66,0.5)",
+              textTransform: "uppercase",
+              margin: "0 0 0.75rem 0",
+            }}>
               Education
-            </h3>
-            <p className="text-gray-300">
-              Codar Academy{" "}
-              <span className="italic">Full Stack Web Development</span> (2023 –
-              2024)
+            </p>
+            <p style={{
+              fontSize: "15px",
+              color: "rgba(255,255,255,0.7)",
+              lineHeight: 1.6,
+              margin: 0,
+              fontFamily: "monospace",
+            }}>
+              Codar Academy —{" "}
+              <span style={{ color: "#c8f542" }}>Full Stack Web Development</span>
+              {" "}(2023 – 2024)
             </p>
           </div>
 
-          <div data-aos="zoom-in-up">
-           <h3 className="text-3xl tracking-wider font-semibold mb-4 bg-gradient-to-r from-purple-400 via-white to-yellow-500 bg-clip-text text-transparent opacity-50">
-  Technical Skills
-</h3>
+          {/* Language */}
+          <div style={{ marginBottom: "3rem" }}>
+            <p style={{
+              fontFamily: "monospace",
+              fontSize: "10px",
+              letterSpacing: "0.18em",
+              color: "rgba(200,245,66,0.5)",
+              textTransform: "uppercase",
+              margin: "0 0 0.75rem 0",
+            }}>
+              Language
+            </p>
+            <p style={{
+              fontSize: "15px",
+              color: "rgba(255,255,255,0.7)",
+              margin: 0,
+              fontFamily: "monospace",
+            }}>
+              English (Professional Proficiency)
+            </p>
+          </div>
 
-
-            <div className="p-4 rounded-xl border border-white/20 bg-white/5 backdrop-blur-md">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {techStack.map(({ name, icon: Icon, color }) => (
-                  <motion.div
-                    key={name}
-                    className="flex items-center gap-2 hover:bg-white/10 transition rounded-lg p-2"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <Icon size={22} color={color} />
-                    <span>{name}</span>
-                  </motion.div>
-                ))}
-              </div>
+          {/* Soft skills */}
+          <div>
+            <p style={{
+              fontFamily: "monospace",
+              fontSize: "10px",
+              letterSpacing: "0.18em",
+              color: "rgba(200,245,66,0.5)",
+              textTransform: "uppercase",
+              margin: "0 0 1rem 0",
+            }}>
+              Soft Skills
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+              {softSkills.map(skill => (
+                <span key={skill} style={{
+                  fontSize: "15px",
+                  color: "rgba(255,255,255,0.5)",
+                  fontFamily: "monospace",
+                  borderBottom: "1px solid rgba(255,255,255,0.05)",
+                  paddingBottom: "0.6rem",
+                }}>
+                  {skill}
+                </span>
+              ))}
             </div>
           </div>
-        </motion.div>
+        </div>
 
-         
-        <motion.div
-          className="space-y-10"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <div data-aos="fade-left">
-            <h3 className="text-3xl tracking-wider font-semibold mb-3 bg-gradient-to-r from-purple-400 via-white  to-yellow-500 bg-clip-text text-transparent opacity-50 mb-3 font-semibold md:mt-36">
-              Soft Skills
-            </h3>
-            <ul className="grid grid-cols-2 gap-2 text-gray-300">
-              <li>Team Collaboration</li>
-              <li>Communication</li>
-              <li>Critical Thinking</li>
-              <li>Time Management</li>
-              <li>Problem Solving</li>
-              <li>Adaptability</li>
-            </ul>
-          </div>
+        {/* RIGHT COLUMN — tech grid */}
+        <div 
+          className="tech-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "1px",
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.06)",
+        }}>
+          {techStack.map(({ name, icon: Icon }) => (
+            <div
+              key={name}
+              className="tech-card"
+              style={{
+                background: "#000",
+                padding: "2rem 1rem",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.85rem",
+                cursor: "default",
+                transition: "background 0.25s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.03)"}
+              onMouseLeave={e => e.currentTarget.style.background = "#000"}
+            >
+              <Icon
+                size={28}
+                style={{ color: "rgba(255,255,255,0.3)", transition: "color 0.25s" }}
+                onMouseEnter={e => e.currentTarget.style.color = "#c8f542"}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.3)"}
+              />
+              <span style={{
+                fontFamily: "monospace",
+                fontSize: "9px",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.35)",
+                textAlign: "center",
+              }}>
+                {name}
+              </span>
+            </div>
+          ))}
+        </div>
 
-          <div data-aos="fade-up">
-            <h3 className="text-xl font-semibold mb-3">Language</h3>
-            <p className="text-gray-300">English (Professional)</p>
-          </div>
-        </motion.div>
       </div>
-    </div>
+    </section>
   );
 }
