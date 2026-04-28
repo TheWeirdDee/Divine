@@ -3,7 +3,7 @@ import {
   SiHtml5, SiCss3, SiJavascript, SiReact, SiTypescript,
   SiTailwindcss, SiNodedotjs, SiNextdotjs, SiGreensock, SiFramer,
   SiGithub, SiBootstrap, SiReactquery, SiJira, SiShadcnui, SiSolidity,
-  SiEthereum, SiPostman
+  SiEthereum, SiPostman, SiVercel, SiBlockchaindotcom
 } from "react-icons/si";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -30,6 +30,8 @@ const techStack = [
   { name: "Solidity", icon: SiSolidity },
   { name: "Smart Contracts", icon: SiEthereum },
   { name: "REST APIs", icon: SiPostman },
+  { name: "Blockchain", icon: SiBlockchaindotcom },
+  { name: "Vercel", icon: SiVercel },
 ];
 
 const softSkills = ["Collaboration", "Critical Thinking", "Problem Solving", "Adaptability"];
@@ -39,6 +41,26 @@ export default function TechSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Ensure elements are visible if ScrollTrigger doesn't fire
+      gsap.set(".reveal-tech", { opacity: 0, y: 30 });
+      gsap.set(".tech-card", { opacity: 0, y: 20 });
+
+      gsap.fromTo(".reveal-tech", 
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.15,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 90%",
+            once: true,
+          }
+        }
+      );
+
       gsap.fromTo(".tech-card",
         { opacity: 0, y: 20 },
         {
@@ -49,7 +71,8 @@ export default function TechSection() {
           ease: "power2.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
+            start: "top 90%",
+            once: true,
           }
         }
       );
@@ -62,8 +85,8 @@ export default function TechSection() {
       ref={sectionRef}
       className="tech-section"
       style={{
-        background: "#000",
-        borderTop: "1px solid rgba(255,255,255,0.05)",
+        background: "var(--bg-dark)",
+        borderTop: "1px solid rgba(var(--text-rgb), 0.05)",
         padding: "8rem 6vw",
       }}
     >
@@ -81,11 +104,11 @@ export default function TechSection() {
         {/* LEFT COLUMN */}
         <div>
           {/* Section label */}
-          <p style={{
+          <p className="reveal-tech" style={{
             fontFamily: "monospace",
             fontSize: "11px",
             letterSpacing: "0.2em",
-            color: "#c8f542",
+            color: "var(--accent-color)",
             textTransform: "uppercase",
             margin: "0 0 3rem 0",
           }}>
@@ -93,11 +116,11 @@ export default function TechSection() {
           </p>
 
           {/* Big headline */}
-          <h2 style={{
+          <h2 className="reveal-tech" style={{
             fontFamily: "serif",
             fontSize: "clamp(36px, 5vw, 64px)",
             fontWeight: 700,
-            color: "#f0ede8",
+            color: "var(--text-primary)",
             lineHeight: 1.05,
             margin: "0 0 4rem 0",
           }}>
@@ -105,12 +128,12 @@ export default function TechSection() {
           </h2>
 
           {/* Education */}
-          <div style={{ marginBottom: "2.5rem" }}>
+          <div className="reveal-tech" style={{ marginBottom: "2.5rem" }}>
             <p style={{
               fontFamily: "monospace",
               fontSize: "10px",
               letterSpacing: "0.18em",
-              color: "rgba(200,245,66,0.5)",
+              color: "#c8f542",
               textTransform: "uppercase",
               margin: "0 0 0.75rem 0",
             }}>
@@ -118,24 +141,23 @@ export default function TechSection() {
             </p>
             <p style={{
               fontSize: "15px",
-              color: "rgba(255,255,255,0.7)",
-              lineHeight: 1.6,
+              color: "rgba(var(--text-rgb), 0.7)",
               margin: 0,
               fontFamily: "monospace",
             }}>
               Codar Academy —{" "}
-              <span style={{ color: "#c8f542" }}>Full Stack Web Development</span>
+              <span style={{ color: "var(--accent-color)" }}>Full Stack Web Development</span>
               {" "}(2023 – 2024)
             </p>
           </div>
 
           {/* Language */}
-          <div style={{ marginBottom: "3rem" }}>
+          <div className="reveal-tech" style={{ marginBottom: "3rem" }}>
             <p style={{
               fontFamily: "monospace",
               fontSize: "10px",
               letterSpacing: "0.18em",
-              color: "rgba(200,245,66,0.5)",
+              color: "#c8f542",
               textTransform: "uppercase",
               margin: "0 0 0.75rem 0",
             }}>
@@ -143,7 +165,7 @@ export default function TechSection() {
             </p>
             <p style={{
               fontSize: "15px",
-              color: "rgba(255,255,255,0.7)",
+              color: "rgba(var(--text-rgb), 0.7)",
               margin: 0,
               fontFamily: "monospace",
             }}>
@@ -152,12 +174,12 @@ export default function TechSection() {
           </div>
 
           {/* Soft skills */}
-          <div>
+          <div className="reveal-tech">
             <p style={{
               fontFamily: "monospace",
               fontSize: "10px",
               letterSpacing: "0.18em",
-              color: "rgba(200,245,66,0.5)",
+              color: "#c8f542",
               textTransform: "uppercase",
               margin: "0 0 1rem 0",
             }}>
@@ -167,9 +189,9 @@ export default function TechSection() {
               {softSkills.map(skill => (
                 <span key={skill} style={{
                   fontSize: "15px",
-                  color: "rgba(255,255,255,0.5)",
+                  color: "rgba(var(--text-rgb), 0.5)",
                   fontFamily: "monospace",
-                  borderBottom: "1px solid rgba(255,255,255,0.05)",
+                  borderBottom: "1px solid rgba(var(--text-rgb), 0.05)",
                   paddingBottom: "0.6rem",
                 }}>
                   {skill}
@@ -184,42 +206,39 @@ export default function TechSection() {
           className="tech-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1px",
-            background: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(255,255,255,0.06)",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: 0,
+            background: "transparent",
+            border: "none",
         }}>
           {techStack.map(({ name, icon: Icon }) => (
             <div
               key={name}
-              className="tech-card"
+              className="tech-card items-start md:items-center"
               style={{
-                background: "#000",
+                background: "var(--bg-dark)",
                 padding: "2rem 1rem",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
                 justifyContent: "center",
                 gap: "0.85rem",
                 cursor: "default",
                 transition: "background 0.25s",
               }}
-              onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.03)"}
-              onMouseLeave={e => e.currentTarget.style.background = "#000"}
-            >
+              onMouseEnter={e => e.currentTarget.style.background = "rgba(var(--text-rgb), 0.03)"}
+              onMouseLeave={e => e.currentTarget.style.background = "var(--bg-dark)"}>
               <Icon
                 size={28}
-                style={{ color: "rgba(255,255,255,0.3)", transition: "color 0.25s" }}
-                onMouseEnter={e => e.currentTarget.style.color = "#c8f542"}
-                onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.3)"}
+                style={{ color: "rgba(var(--text-rgb), 0.3)", transition: "color 0.25s" }}
+                onMouseEnter={e => e.currentTarget.style.color = "var(--accent-color)"}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(var(--text-rgb), 0.3)"}
               />
-              <span style={{
+              <span className="text-left md:text-center" style={{
                 fontFamily: "monospace",
                 fontSize: "9px",
                 letterSpacing: "0.15em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,0.35)",
-                textAlign: "center",
+                color: "rgba(var(--text-rgb), 0.35)",
               }}>
                 {name}
               </span>
