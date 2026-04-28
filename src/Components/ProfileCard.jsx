@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Divine from "../assets/Images/Divineee.jpg";
@@ -8,154 +7,100 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ProfileCard() {
   const containerRef = useRef(null);
+  const imageContainerRef = useRef(null);
 
- useEffect(() => {
-  if (!containerRef.current) return;
+  useEffect(() => {
+    if (!containerRef.current) return;
 
-  const mm = gsap.matchMedia();
-
-  
-  // DESKTOP (SCRUB)
-  
-  mm.add("(min-width: 768px)", () => {
-    gsap.set(".reveal-text", { y: 80, opacity: 0 });
-
-    gsap.to(".reveal-text", {
-      y: 0,
-      opacity: 1,
-      duration: 1.6,
-      ease: "power4.out",
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 75%",
-        end: "bottom 50%",
-        scrub: 0.6,
-      },
-    });
-  });
- 
-  // MOBILE (PER-ELEMENT TRIGGER)
- 
-  mm.add("(max-width: 767px)", () => {
-    gsap.utils.toArray(".reveal-text").forEach((el) => {
-      gsap.fromTo(
-        el,
+    const ctx = gsap.context(() => {
+      gsap.fromTo(".reveal-text", 
         { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.6,
-          ease: "power2.out",
+          stagger: 0.1,
+          duration: 1,
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: el,
-            start: "top 90%",
-            end: "bottom 10%",  
-            toggleActions: "play reverse play reverse",  
-            scrub: 0.3,
+            trigger: containerRef.current,
+            start: "top 70%",
           },
         }
       );
-    });
-  });
 
-  return () => mm.revert();
-}, []);
+      gsap.fromTo(imageContainerRef.current,
+        { scale: 1.1, filter: "grayscale(100%)" },
+        {
+          scale: 1,
+          filter: "grayscale(0%)",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+            end: "bottom center",
+            scrub: 0.5,
+          }
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
       ref={containerRef}
-      className="relative py-20 flex justify-center"
+      style={{ paddingLeft: '6vw', paddingRight: '6vw' }}
+      className="relative py-32 md:py-48 bg-[#0a0a0a] border-t border-white/5"
     >
-      
-      <motion.div
-        className="absolute -right-20 -top-20 w-52 h-72 rounded-3xl blur-3xl rotate-12 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(closest-side, rgba(124,58,237,0.35), rgba(147,51,234,0.12))",
-        }}
-      />
-
-      <div className="relative z-10 max-w-6xl px-6 md:px-10 flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16">
-        
-        <div className="max-w-xl text-left space-y-6">
-          <div className="overflow-hidden">
-            <h1 className="reveal-text text-3xl font-extrabold">
-              About Me
-            </h1>
-          </div>
-
-          <div className="overflow-hidden">
-            <h2 className="reveal-text inline-block px-5 py-3 text-3xl font-extrabold rounded-lg bg-purple-700/10 border border-white/20 backdrop-blur-md">
+      <div className="max-w-[1700px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 items-center">
+        <div className="space-y-10 md:space-y-16">
+          <div>
+            <span className="section-label mb-8 block reveal-text">Who I am</span>
+            <h2 className="reveal-text text-5xl md:text-7xl font-bold mb-8 tracking-tighter leading-none">
               Divine Dilibe
             </h2>
-          </div>
-
-          <div className="overflow-hidden">
-            <p className="reveal-text text-purple-300">
-              Frontend Developer • UI Enthusiast
+            <p className="reveal-text font-mono text-xs tracking-[0.4em] uppercase text-[#c8f542]">
+              Frontend Developer • Web3 Enthusiast
             </p>
           </div>
 
-          <div className="overflow-hidden">
-            <p className="reveal-text text-gray-300 leading-relaxed">
-              Hi! I am Divine, a Frontend Web Developer who loves turning designs
-              into smooth, high-converting, and responsive web applications and Products. Most 
-              of my work involves React, HTML, Tailwind CSS, and JavaScript, 
-              alongside GSAP and Framer Motion for animations. I also have a solid 
-              foundation in Next.js, TypeScript, and Node.js. Other tools and 
-              skills are listed below.
-            </p>
-          </div>
-
-          <div className="overflow-hidden">
-            <p className="reveal-text text-gray-300 leading-relaxed">
+          <div className="space-y-6 md:space-y-10">
+          
+            <p className="reveal-text text-base md:text-lg text-white/60 leading-relaxed max-w-xl">
               I enjoy building clean, reusable components and making sure apps
               look great and work well on any device. Collaboration is a big
               part of how I work — I like solving problems with teammates and
-              shipping products that feel intuitive and reliable. Right now,
-              my focus is on growing as a developer while creating digital
-              experiences that people actually enjoy using.{" "}
-              <strong>HIRE ME!</strong>
+              shipping products that feel intuitive and reliable.
             </p>
           </div>
 
-          <div className="overflow-hidden">
-            <div className="reveal-text flex gap-4 pt-4">
-              <a
-                href="#projects"
-                className="px-4 py-2 border border-white/20 rounded-lg text-sm hover:bg-white/10 transition"
-              >
-                View projects
-              </a>
-              <a
-                href="mailto:divinenation1@gmail.com"
-                className="px-4 py-2 border border-white/20 rounded-lg text-sm hover:bg-white/10 transition"
-              >
-                Contact
-              </a>
-            </div>
+          <div className="reveal-text pt-6">
+            <a
+              href="mailto:divinenation1@gmail.com"
+              className="inline-flex items-center gap-6 group"
+            >
+              <span className="w-14 h-14 md:w-16 md:h-16 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#c8f542] group-hover:bg-[#c8f542] transition-all duration-300">
+                <span className="text-white group-hover:text-black transition-colors text-xl">→</span>
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] group-hover:text-[#c8f542] transition-colors">Start a conversation</span>
+            </a>
           </div>
         </div>
 
-        <motion.div
-          initial={{ x: 80, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.1, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="relative shrink-0"
-        >
-          <motion.div
-            whileHover={{ rotate: 0, scale: 1.05 }}
-            className="w-64 h-80 md:w-80 md:h-96 rounded-3xl p-3 border bg-white/5 backdrop-blur-md rotate-6"
+        <div className="relative w-full max-w-[450px] mx-auto md:ml-auto md:mr-0">
+          <div 
+            ref={imageContainerRef}
+            className="aspect-[4/5] border border-white/10 overflow-hidden relative group"
           >
             <img
               src={Divine}
               alt="Divine"
-              className="w-full h-full object-cover rounded-2xl"
+              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />
-          </motion.div>
-        </motion.div>
+          </div>
+          {/* Accent Border */}
+          <div className="absolute -top-4 -right-4 w-32 h-32 border-t-2 border-r-2 border-[#c8f542] pointer-events-none" />
+        </div>
       </div>
     </section>
   );
