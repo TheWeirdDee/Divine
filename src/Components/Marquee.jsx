@@ -34,7 +34,7 @@ const Marquee = () => {
       <span className="inline-block px-8 text-2xl md:text-4xl font-serif">
         Got a project? Let&apos;s hear it!
       </span>
-      <span className="inline-block px-8 text-2xl md:text-4xl text-[#c8f542]">◆</span>
+      <span className="inline-block px-8 text-2xl md:text-4xl text-[var(--accent-readable)]">◆</span>
       <span className="inline-block px-8 text-2xl md:text-4xl font-serif">
         Currently open to new roles
       </span>
