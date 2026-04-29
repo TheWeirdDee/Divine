@@ -26,6 +26,7 @@
   --text-primary: #f0ede8;
   --text-rgb: 240, 237, 232;
   --accent-color: #c8f542;
+  --accent-readable: #c8f542;
   --font-serif: 'Playfair Display', serif;
   --font-mono: 'JetBrains Mono', monospace;
   --font-syncopate: 'Syncopate', sans-serif;
@@ -36,7 +37,8 @@ body.light-mode {
   --bg-rgb: 240, 237, 232;
   --text-primary: #0a0a0a;
   --text-rgb: 10, 10, 10;
-  --accent-color: #3d6b00;
+  --accent-color: #c8f542;
+  --accent-readable: #3d6b00;
 }
 
 
@@ -71,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Custom Selection */
 ::selection {
   background-color: var(--accent-color);
-  color: var(--bg-dark);
+  color: #0a0a0a; /* Dark text for the lime accent */
 }
 
 /* Base Body Text */
@@ -87,7 +89,16 @@ p {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--accent-color);
+  color: var(--accent-readable);
+  margin-bottom: 2rem;
+}
+
+body.light-mode .highlight-on-light {
+  background: var(--accent-color);
+  color: #0a0a0a !important;
+  padding: 0.2em 0.5em;
+  display: inline-block;
+  border-radius: 2px;
 }
 
 /* Hide scrollbar but allow scrolling */
