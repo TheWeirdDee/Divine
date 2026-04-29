@@ -147,7 +147,7 @@ function Navbar() {
                     left: 0,
                     width: isActive ? "100%" : "0%",
                     height: "1px",
-                    background: "var(--accent-color)",
+                    background: "var(--accent-readable)",
                     transition: "width 0.3s ease-out"
                   }}
                 />
@@ -249,7 +249,7 @@ function Hero() {
           
           <div className="order-first md:order-last relative group mx-auto md:mx-0 justify-self-center md:justify-self-auto w-full max-w-[260px] md:max-w-xs flex flex-col items-center md:items-start gap-6">
             <div className="flex items-center gap-3 px-4 py-2 border border-[var(--text-primary)]/10 rounded-full bg-[var(--bg-dark)]/50 backdrop-blur-sm">
-              <span className="w-2 h-2 bg-[#c8f542] rounded-full animate-pulse" />
+              <span className="w-2 h-2 bg-[var(--accent-readable)] rounded-full animate-pulse" />
               <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--text-primary)]">Open to work</span>
             </div>
             
@@ -268,7 +268,7 @@ function Hero() {
             </h1>
             <div className="text-[clamp(1.8rem,5vw,5rem)] leading-[1.1] mb-12 tracking-tighter text-[var(--text-primary)] min-h-[2.2em] md:min-h-0">
                <span ref={subheadlineRef}></span>
-               <span className="inline-block w-[2px] md:w-[3px] h-[0.7em] bg-[#c8f542] ml-2 md:ml-4 animate-pulse align-middle" />
+               <span className="inline-block w-[2px] md:w-[3px] h-[0.7em] bg-[var(--accent-readable)] ml-2 md:ml-4 animate-pulse align-middle" />
             </div>
             
             <div ref={subRef} className="max-w-xl" style={{ marginTop: '2rem' }}>
@@ -281,13 +281,14 @@ function Hero() {
                 className="text-sm md:text-lg font-mono tracking-tight"
               >
                 <span style={{ 
-                  background: "#c8f542", 
+                  background: "var(--accent-color)", 
                   padding: "0.2em 0.4em",
-                  boxShadow: "0.4em 0 0 #c8f542, -0.4em 0 0 #c8f542",
+                  boxShadow: "0.4em 0 0 var(--accent-color), -0.4em 0 0 var(--accent-color)",
                   boxDecorationBreak: "clone",
                   WebkitBoxDecorationBreak: "clone",
+                  color: "#0a0a0a",
                 }}>
-                  I focus on building modern, fast, accessible, user-friendly and engaging digital experiences using modern web standards and precise motion design.
+                  My focus is building modern, fast, accessible, user-friendly and engaging digital experiences using modern web standards and precise motion design.
                 </span>
               </p>
               <div style={{ marginTop: '30px' }} className="flex gap-8">
