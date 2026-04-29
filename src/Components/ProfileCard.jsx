@@ -104,17 +104,7 @@ export default function ProfileCard() {
 
         <div>
 
-          <p
-            className="reveal-block"
-            style={{
-              fontFamily: "monospace",
-              fontSize: "11px",
-              letterSpacing: "0.2em",
-              color: "var(--accent-color)",
-              textTransform: "uppercase",
-              margin: "0 0 2rem 0",
-            }}
-          >
+          <p className="reveal-block section-label highlight-on-light">
             Who I Am
           </p>
 
@@ -143,7 +133,7 @@ export default function ProfileCard() {
               fontFamily: "monospace",
               fontSize: "11px",
               letterSpacing: "0.25em",
-              color: "rgba(200,245,66,0.6)",
+              color: "var(--accent-readable)",
               textTransform: "uppercase",
               margin: "0 0 3.5rem 0",
             }}
@@ -198,7 +188,7 @@ export default function ProfileCard() {
             onMouseLeave={e => {
               e.currentTarget.querySelector(".cta-circle").style.background = "transparent"
               e.currentTarget.querySelector(".cta-circle").style.borderColor = "rgba(var(--text-rgb), 0.2)"
-              e.currentTarget.querySelector(".cta-arrow").style.color = "var(--bg-dark)"
+              e.currentTarget.querySelector(".cta-arrow").style.color = "var(--text-primary)"
               e.currentTarget.querySelector(".cta-label").style.color = "rgba(var(--text-rgb), 0.5)"
             }}
           >
