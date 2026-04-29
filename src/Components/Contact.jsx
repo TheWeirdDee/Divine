@@ -21,14 +21,7 @@ const Contact = () => {
           marginBottom: "3rem",
         }}>
           <div>
-            <p style={{
-              fontFamily: "monospace",
-              fontSize: "11px",
-              letterSpacing: "0.2em",
-              color: "var(--accent-color)",
-              textTransform: "uppercase",
-              margin: "0 0 1.25rem 0",
-            }}>
+            <p className="section-label highlight-on-light">
               Contact
             </p>
             <h2 style={{
