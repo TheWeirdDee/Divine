@@ -104,14 +104,7 @@ export default function TechSection() {
         {/* LEFT COLUMN */}
         <div>
           {/* Section label */}
-          <p className="reveal-tech" style={{
-            fontFamily: "monospace",
-            fontSize: "11px",
-            letterSpacing: "0.2em",
-            color: "var(--accent-color)",
-            textTransform: "uppercase",
-            margin: "0 0 3rem 0",
-          }}>
+          <p className="reveal-tech section-label highlight-on-light">
             Technical Proficiency
           </p>
 
@@ -133,7 +126,7 @@ export default function TechSection() {
               fontFamily: "monospace",
               fontSize: "10px",
               letterSpacing: "0.18em",
-              color: "#c8f542",
+              color: "var(--accent-readable)",
               textTransform: "uppercase",
               margin: "0 0 0.75rem 0",
             }}>
@@ -146,7 +139,7 @@ export default function TechSection() {
               fontFamily: "monospace",
             }}>
               Codar Academy —{" "}
-              <span style={{ color: "var(--accent-color)" }}>Full Stack Web Development</span>
+              <span style={{ color: "var(--accent-readable)" }}>Full Stack Web Development</span>
               {" "}(2023 – 2024)
             </p>
           </div>
@@ -157,7 +150,7 @@ export default function TechSection() {
               fontFamily: "monospace",
               fontSize: "10px",
               letterSpacing: "0.18em",
-              color: "#c8f542",
+              color: "var(--accent-readable)",
               textTransform: "uppercase",
               margin: "0 0 0.75rem 0",
             }}>
@@ -179,7 +172,7 @@ export default function TechSection() {
               fontFamily: "monospace",
               fontSize: "10px",
               letterSpacing: "0.18em",
-              color: "#c8f542",
+              color: "var(--accent-readable)",
               textTransform: "uppercase",
               margin: "0 0 1rem 0",
             }}>
