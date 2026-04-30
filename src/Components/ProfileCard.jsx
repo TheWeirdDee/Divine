@@ -30,7 +30,6 @@ export default function ProfileCard() {
         }
       );
 
-      // Fade up blocks
       gsap.fromTo(".reveal-block",
         { y: 40, opacity: 0 },
         {
@@ -46,7 +45,6 @@ export default function ProfileCard() {
         }
       );
 
-      // Image reveal
       gsap.fromTo(imageContainerRef.current,
         { clipPath: "inset(100% 0% 0% 0%)", opacity: 0 },
         {
@@ -61,7 +59,6 @@ export default function ProfileCard() {
         }
       );
 
-      // Image grayscale scrub
       gsap.fromTo(".inner-img",
         { filter: "grayscale(100%) brightness(0.7)", scale: 1.08 },
         {
@@ -126,7 +123,6 @@ export default function ProfileCard() {
             </h2>
           </div>
 
-          {/* Role */}
           <p
             className="reveal-block"
             style={{
@@ -141,7 +137,6 @@ export default function ProfileCard() {
             Frontend Developer • Web3 Enthusiast
           </p>
 
-          {/* Divider */}
           <div
             className="reveal-block"
             style={{
@@ -150,7 +145,6 @@ export default function ProfileCard() {
             }}
           />
 
-          {/* Bio */}
           <p
             className="reveal-block"
             style={{
@@ -168,7 +162,6 @@ export default function ProfileCard() {
             feel intuitive and reliable.
           </p>
 
-          {/* CTA */}
           <a
             className="reveal-block"
             href="mailto:divinenation1@gmail.com"
@@ -229,7 +222,6 @@ export default function ProfileCard() {
           </a>
         </div>
 
-        {/* RIGHT — image */}
         <div style={{ position: "relative" }}>
           <div
             ref={imageContainerRef}
@@ -254,7 +246,6 @@ export default function ProfileCard() {
             />
           </div>
 
-          {/* Accent corner */}
           <div style={{
             position: "absolute",
             top: "-16px",
