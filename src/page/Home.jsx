@@ -20,7 +20,6 @@ function Navbar() {
   const navRef = useRef(null);
 
   useEffect(() => {
-    // Apply saved theme on mount
     if (localStorage.getItem('theme') === 'light') {
       document.body.classList.add('light-mode');
     } else {
@@ -30,7 +29,6 @@ function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      // ScrollSpy logic
       const sections = ["work", "about", "contact"];
       const current = sections.find(id => {
         const el = document.getElementById(id);
@@ -108,7 +106,6 @@ function Navbar() {
       }`}
     >
       <div className="max-w-[1700px] mx-auto w-full flex justify-between items-center relative">
-        {/* Logo */}
         <div 
           className="nav-item shimmer-text"
           style={{
@@ -122,7 +119,6 @@ function Navbar() {
           Divine.Dev
         </div>
         
-        {/* Links - Visible on mobile with small font */}
         <div className="flex gap-8 md:gap-20 items-center">
           {navLinks.map((link, i) => {
             const isActive = activeSection === link.href.replace("#", "");
@@ -139,7 +135,6 @@ function Navbar() {
                 }}
               >
                 {link.name}
-                {/* Underline for active section */}
                 <div 
                   style={{
                     position: "absolute",
@@ -179,7 +174,6 @@ function Hero() {
   const marqueeContainerRef = useRef(null);
 
   useEffect(() => {
-    // 1. Initial Headline land animation (words pop up)
     const text = "Hello there,";
     const words = text.split(" ");
     headlineRef.current.innerHTML = words.map(w => `<span class="inline-block overflow-hidden"><span class="inline-block">${w}</span></span>`).join(" ");
@@ -198,7 +192,6 @@ function Hero() {
       );
     });
 
-    // 2. Continuous Typewriter Effect
     const phrases = ["I am a Frontend Developer", "my name is Divine Dilibe"];
     let phraseIndex = 0;
     let charIndex = 0;
@@ -220,7 +213,7 @@ function Hero() {
       }
 
       if (!isDeleting && charIndex === currentPhrase.length) {
-        typeSpeed = 2000; // Pause at end
+        typeSpeed = 2000;
         isDeleting = true;
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
@@ -258,7 +251,6 @@ function Hero() {
             </div>
             <div className="absolute -bottom-4 -right-4 w-24 h-24 border-r border-b border-[#c8f542]/30" />
           </div>
- 
           <div className="order-last md:order-first z-10 transition-all">
             <h1 
               ref={headlineRef}
@@ -304,7 +296,6 @@ function Hero() {
         </div>
       </header>
 
-     
       <div className="w-full pt-4 md:pt-6 pb-16 md:pb-24">
         <Marquee />
       </div>
@@ -321,7 +312,6 @@ export default function Portfolio() {
       <main>
         <Hero />
 
-        
         <Projects />
         <TechStack />
         
@@ -333,7 +323,6 @@ export default function Portfolio() {
           <Contact />
         </section>
       </main>
- 
     </div>
   );
 }
