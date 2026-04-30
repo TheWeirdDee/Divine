@@ -23,7 +23,6 @@ const CustomCursor = () => {
 
     window.addEventListener('mousemove', moveCursor);
 
-    // Hover effects
     const handleMouseEnter = () => {
       gsap.to(cursor, {
         scale: 4,
