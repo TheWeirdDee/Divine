@@ -101,14 +101,11 @@ export default function TechSection() {
           alignItems: "start",
       }}>
 
-        {/* LEFT COLUMN */}
         <div>
-          {/* Section label */}
           <p className="reveal-tech section-label highlight-on-light">
             Technical Proficiency
           </p>
 
-          {/* Big headline */}
           <h2 className="reveal-tech" style={{
             fontFamily: "serif",
             fontSize: "clamp(36px, 5vw, 64px)",
@@ -120,7 +117,6 @@ export default function TechSection() {
             My versatile toolkit for the modern web.
           </h2>
 
-          {/* Education */}
           <div className="reveal-tech" style={{ marginBottom: "2.5rem" }}>
             <p style={{
               fontFamily: "monospace",
@@ -144,7 +140,6 @@ export default function TechSection() {
             </p>
           </div>
 
-          {/* Language */}
           <div className="reveal-tech" style={{ marginBottom: "3rem" }}>
             <p style={{
               fontFamily: "monospace",
@@ -166,7 +161,6 @@ export default function TechSection() {
             </p>
           </div>
 
-          {/* Soft skills */}
           <div className="reveal-tech">
             <p style={{
               fontFamily: "monospace",
@@ -194,7 +188,6 @@ export default function TechSection() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN — tech grid */}
         <div 
           className="tech-grid"
           style={{
