@@ -162,49 +162,52 @@ const projects = [
 export default function Projects() {
   const sectionRef = useRef(null)
   const cardRef = useRef(null)
-  const rafRef = useRef(null)
   const hoveredRef = useRef(null)
   const [hovered, setHovered] = useState(null)
 
   useEffect(() => {
-    if (!cardRef.current) return
-    gsap.set(cardRef.current, { opacity: 0, xPercent: 0, yPercent: 0 })
+    const card = cardRef.current;
+    if (!card || hovered === null) return;
 
-    let currentX = 0
-    let currentY = 0
-    let targetX = 0
-    let targetY = 0
+    // Initialize with a snap to current mouse position to avoid jumps
+    // We'll capture the initial mouse position from a one-time event if needed, 
+    // but usually, the first ticker tick will handle it.
+    
+    const xTo = gsap.quickTo(card, "x", { duration: 0.6, ease: "power3.out" });
+    const yTo = gsap.quickTo(card, "y", { duration: 0.6, ease: "power3.out" });
+    const rotateTo = gsap.quickTo(card, "rotation", { duration: 0.6, ease: "power3.out" });
 
-    const move = (e) => {
-      targetX = e.clientX + 24
-      targetY = e.clientY - 200
-    }
-    window.addEventListener("mousemove", move)
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
 
-    const tick = () => {
-      currentX += (targetX - currentX) * 0.1
-      currentY += (targetY - currentY) * 0.1
+    const handleMove = (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    };
 
-      if (cardRef.current) {
-        cardRef.current.style.transform = `translate(${currentX}px, ${currentY}px)`
-      }
+    const update = () => {
+      xTo(mouseX + 25);
+      yTo(mouseY - 150);
+      
+      const tilt = (mouseX - window.innerWidth / 2) * 0.01;
+      rotateTo(tilt);
+    };
 
-      rafRef.current = requestAnimationFrame(tick)
-    }
-    rafRef.current = requestAnimationFrame(tick)
+    window.addEventListener("mousemove", handleMove);
+    gsap.ticker.add(update);
 
     return () => {
-      window.removeEventListener("mousemove", move)
-      cancelAnimationFrame(rafRef.current)
-    }
-  }, [])
+      window.removeEventListener("mousemove", handleMove);
+      gsap.ticker.remove(update);
+    };
+  }, [hovered]);
 
   const handleEnter = (i) => {
     hoveredRef.current = i
     setHovered(i)
     if (cardRef.current) {
       gsap.killTweensOf(cardRef.current)
-      gsap.to(cardRef.current, { opacity: 1, scale: 1, duration: 0.2, ease: "power2.out" })
+      gsap.to(cardRef.current, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" })
     }
   }
 
@@ -214,8 +217,9 @@ export default function Projects() {
       gsap.killTweensOf(cardRef.current)
       gsap.to(cardRef.current, {
         opacity: 0,
-        duration: 0.15,
-        ease: "power2.in",
+        scale: 0.8,
+        duration: 0.3,
+        ease: "power3.in",
         onComplete: () => setHovered(null),
       })
     }
@@ -234,7 +238,6 @@ export default function Projects() {
         zIndex: 1,
       }}
     >
-      {/* Section label */}
       <p style={{
         fontFamily: "monospace",
         fontSize: "11px",
@@ -247,7 +250,6 @@ export default function Projects() {
         Selected Works
       </p>
 
-      {/* Section headline */}
       <h2 style={{
         fontFamily: "serif",
         fontSize: "clamp(28px, 4vw, 52px)",
@@ -260,7 +262,6 @@ export default function Projects() {
         Redefining the digital landscape with intent.
       </h2>
 
-      {/* Project list */}
       <div style={{ borderTop: "1px solid rgba(var(--text-rgb), 0.06)" }}>
         {projects.map((p, i) => (
           <div
@@ -280,7 +281,6 @@ export default function Projects() {
               borderRadius: "6px",
             }}
           >
-            {/* Letter avatar */}
             <div style={{
               width: "44px",
               height: "44px",
@@ -298,9 +298,7 @@ export default function Projects() {
               {p.letter}
             </div>
 
-            {/* Center: name + links + description */}
             <div style={{ minWidth: 0 }}>
-              {/* Name */}
               <div className="name-row" style={{
                 display: "flex",
                 alignItems: "center",
@@ -316,7 +314,6 @@ export default function Projects() {
                   {p.name}
                 </span>
 
-                {/* Links inline with name */}
                 <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
                   {p.live && (
                     <a href={p.live} target="_blank" rel="noreferrer"
@@ -357,7 +354,6 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Description */}
               <p style={{
                 margin: 0,
                 fontSize: "12px",
@@ -368,7 +364,6 @@ export default function Projects() {
                 {p.description}
               </p>
 
-              {/* Tags — visible only on mobile, hidden on desktop via CSS */}
               <div className="mobile-tags" style={{
                 display: "flex",
                 gap: "0.4rem",
@@ -391,7 +386,6 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Right: tags — hidden on mobile */}
             <div className="project-tags" style={{
               display: "flex",
               gap: "0.5rem",
@@ -417,7 +411,6 @@ export default function Projects() {
         ))}
       </div>
 
-      {/* React Portal: Unconstrained fixed layer */}
       {document.getElementById("card-portal") && createPortal(
         <div
           ref={cardRef}
