@@ -13,7 +13,6 @@ const Contact = () => {
     >
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
-        {/* Top row */}
         <div style={{
           display: "flex",
           alignItems: "flex-start",
@@ -52,10 +51,8 @@ const Contact = () => {
           }} />
         </div>
 
-        {/* Divider */}
         <div style={{ borderTop: "1px solid rgba(var(--text-rgb), 0.06)", marginBottom: "3rem" }} />
 
-        {/* Email + socials */}
         <div style={{
           display: "flex",
           alignItems: "flex-end",
@@ -109,7 +106,6 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Copyright */}
         <div style={{
           marginTop: "5rem",
           borderTop: "1px solid rgba(var(--text-rgb), 0.06)",
