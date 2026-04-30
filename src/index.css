@@ -12,12 +12,12 @@
   padding: 0;
   box-sizing: border-box;
   cursor: none !important; /* Hide default cursor for custom cursor */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 *::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
 }
 
 :root {
@@ -70,20 +70,17 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
 }
 
-/* Custom Selection */
 ::selection {
   background-color: var(--accent-color);
   color: #0a0a0a; /* Dark text for the lime accent */
 }
 
-/* Base Body Text */
 p {
   font-size: 15px;
   line-height: 1.7;
   color: rgba(var(--text-rgb), 0.6);
 }
 
-/* Section Label Utility */
 .section-label {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -101,7 +98,6 @@ body.light-mode .highlight-on-light {
   border-radius: 2px;
 }
 
-/* Hide scrollbar but allow scrolling */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -110,12 +106,10 @@ body.light-mode .highlight-on-light {
   scrollbar-width: none;
 }
 
-/* GSAP Specific */
 .clip-reveal {
   clip-path: inset(0 100% 0 0);
 }
 
-/* Shimmer text animation */
 @keyframes shimmer {
   0%   { background-position: 200% center; }
   100% { background-position: -200% center; }
@@ -136,7 +130,6 @@ body.light-mode .highlight-on-light {
   transition: background 0.4s ease-out;
 }
 
-/* Marquee Styles */
 .marquee-container {
   overflow: hidden;
   white-space: nowrap;
@@ -149,11 +142,9 @@ body.light-mode .highlight-on-light {
   padding-right: 2rem;
 }
 
-/* Desktop: hide mobile tags, show right column tags */
 .mobile-tags { display: none !important; }
 .project-tags { display: flex !important; }
 
-/* Mobile: show mobile tags, hide right column */
 @media (max-width: 768px) {
   .mobile-tags { display: flex !important; }
   .project-tags { display: none !important; }
@@ -178,7 +169,6 @@ body.light-mode .highlight-on-light {
     gap: 0.5rem !important;
   }
 
-  /* Tech Stack Mobile Layout */
   .tech-section {
     padding: 4rem 5vw !important;
   }
@@ -195,7 +185,6 @@ body.light-mode .highlight-on-light {
     background: transparent !important;
   }
 
-  /* About Grid Layout */
   .about-grid {
     grid-template-columns: 1fr !important;
     gap: 3rem !important;
